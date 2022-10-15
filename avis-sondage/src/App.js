@@ -1,9 +1,10 @@
 import "./App.scss";
+import SuiviAvis from "./components/SuiviAvis";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello WellEat</h1>
+    <div>
+      <SuiviAvis />
     </div>
   );
 }

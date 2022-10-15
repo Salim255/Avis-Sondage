@@ -1,0 +1,156 @@
+.sectionAvis {
+  height: 100vh;
+  //width: 100%;
+  margin: 2rem;
+}
+.avis {
+  display: grid;
+  grid-template-columns: 20rem auto;
+  height: 96.2%;
+
+  &__left {
+    background-color: #00c897;
+    display: grid;
+    grid-template-rows: auto 15rem;
+
+    &--down {
+      background-color: rgb(191, 181, 181);
+      text-align: center;
+      padding: 2rem;
+    }
+  }
+  &__cnetre {
+    text-align: center;
+    margin-top: 5rem;
+    &--sondage {
+      border-top: 2px solid black;
+      display: inline;
+      padding-top: 5px;
+    }
+  }
+  &__right {
+    background-color: #ffffff;
+
+    &--header {
+      padding: 2rem;
+    }
+    &--title {
+      border-bottom: 1px solid black;
+      display: inline-block;
+      margin-left: 2rem;
+      padding: 0 0.5rem;
+    }
+
+    &--date {
+    }
+    &--statistics {
+    }
+    &--avislist {
+    }
+  }
+}
+
+.avisHeader {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  border-bottom: 2px solid black;
+
+  &__GD {
+    display: inline-block;
+    margin: 1.5rem;
+    padding: 0.5rem;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    justify-self: center;
+  }
+  &__name {
+    align-self: center;
+  }
+}
+.surpermarket {
+  display: flex;
+  justify-content: center;
+
+  &__icon {
+    margin-right: 2rem;
+  }
+}
+.grocery {
+  display: flex;
+  justify-content: center;
+  &__icon {
+    margin-right: 2rem;
+  }
+}
+
+.select {
+  //background-color: red;
+  padding: 6px 6px;
+  min-width: 10rem;
+  border: none;
+  margin-bottom: 2rem;
+  &:focus {
+    border: unset;
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.btn {
+  padding: 0.5rem 1.3rem;
+  background: #f35421;
+  display: inline-block;
+  color: white;
+  border-radius: 2px;
+}
+
+.connexion {
+  font-size: 12px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.avis-container {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+
+  &--date {
+    grid-row: 1 span 3;
+  }
+  &--statistics {
+    grid-row: 3 / 6;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+  }
+  &--avislist {
+    grid-row: 6/-1;
+  }
+}
+
+.subdate {
+  display: flex;
+
+  &__droplist {
+    display: flex;
+    justify-content: space-between;
+    margin-right: auto;
+    padding: 1.5rem 1.5rem;
+
+    &--title {
+      margin-right: 2rem;
+    }
+    &--drop {
+    }
+  }
+  &__date {
+    padding: 1.5rem 1.5rem;
+  }
+}

@@ -1,3 +1,17 @@
+* {
+  //Applaying 0 padding and margin to each element in html page, to start clean
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; //Border and padding not added to the total width or high in the box
+}
+
 body {
-  background-color: red;
+  background-color: #e5e5e5;
+  color: #777;
+  //font-family: 65%; //
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
 }
