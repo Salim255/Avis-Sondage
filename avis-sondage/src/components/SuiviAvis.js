@@ -68,10 +68,32 @@ function SuiviAvis() {
               <div className="avis-container--date">
                 <div className="subdate">
                   <div className="subdate__droplist">
-                    <div className="subdate__droplist--title">title</div>
-                    <div className="subdate__drop">droplist</div>
+                    <div className="subdate__droplist--title">Trier par </div>
+                    <form className="subdate__droplist--list">
+                      <label for="type"></label>
+                      <select name="type" id="type" className="select-right ">
+                        <option value="rayon">Rayon</option>
+                        <option value="lidl">Lidl</option>
+                      </select>
+                    </form>
                   </div>
-                  <div className="subdate__date">date</div>
+                  <div className="subdate__date">
+                    <input
+                      type="date"
+                      id="start"
+                      name="trip-start"
+                      value=""
+                      className="subdate__date--input"
+                    />
+                    <p className="subdate__date--seperator">AU</p>
+                    <input
+                      type="date"
+                      id="start"
+                      name="trip-start"
+                      value=""
+                      className="subdate__date--input"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="avis-container--statistics">
