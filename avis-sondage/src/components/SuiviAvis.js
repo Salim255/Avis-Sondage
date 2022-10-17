@@ -81,29 +81,77 @@ function SuiviAvis() {
                     <input
                       type="date"
                       id="start"
-                      name="trip-start"
-                      value=""
+                      name=""
+                      value="2018-07-22"
                       className="subdate__date--input"
                     />
                     <p className="subdate__date--seperator">AU</p>
                     <input
                       type="date"
-                      id="start"
-                      name="trip-start"
-                      value=""
+                      id="end"
+                      name=""
+                      value="2018-07-22"
                       className="subdate__date--input"
                     />
                   </div>
                 </div>
               </div>
               <div className="avis-container--statistics">
-                <div>None</div>
-                <div>Tow</div>
-                <div>Three</div>
-                <div>Four</div>
+                <div className="box statistic__1">
+                  <div className="box__chiffre">1214</div>
+                  <p className="box__text box__text--1 box__text">en moyenne</p>
+
+                  <div className="box__tage">
+                    <p className="box__tage--1">-12%</p>
+                  </div>
+                </div>
+                <div className="box statistic__2">
+                  <div className="box__chiffre">1212</div>
+                  <p className="box__text box__text--2 box__text">notes</p>
+
+                  <div className="box__tage">
+                    <p className="box__tage--2">-12%</p>
+                  </div>
+                </div>
+                <div className="box statistic__3">
+                  <div className="box__chiffre">4,5/5 </div>
+                  <p className="box__text box__text--3 box__text">en moyenne</p>
+
+                  <div className="box__tage">
+                    <p className="box__tage--3">+22%</p>
+                  </div>
+                </div>
+                <div className="box statistic__4">
+                  <div className="box__chiffre">75%</div>
+
+                  <p className="box__text--4 box__text">
+                    de demandes de rappel
+                  </p>
+
+                  <div className="box__tage">
+                    <p className="box__tage--4">+22%</p>
+                  </div>
+                </div>
               </div>
+
               <div className="avis-container--avislist">
-                <div>avis</div>
+                <div className="list-avis">
+                  <div className="user">
+                    <div className="user__image"></div>
+                    <div className="user__name"></div>
+                  </div>
+                  <div className="user-avis">
+                    <div className="store__header">Magasin</div>
+                    <div className="store__name">
+                      <div className=""></div>
+                      <div className="store__name--"></div>
+                    </div>
+                  </div>
+                  <div>recomnded</div>
+                  <div>note</div>
+                  <div>phone-icon</div>
+                  <div>details</div>
+                </div>
               </div>
             </div>
           </div>
