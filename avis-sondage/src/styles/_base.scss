@@ -5,6 +5,9 @@
   box-sizing: border-box; //Border and padding not added to the total width or high in the box
 }
 
+html {
+  //scroll-behavior: smooth;
+}
 body {
   background-color: #e5e5e5;
   color: #777;

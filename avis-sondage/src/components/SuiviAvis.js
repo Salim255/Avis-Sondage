@@ -1,5 +1,6 @@
 import React from "react";
-import { BsShop, BsShopWindow } from "react-icons/bs";
+import { BsShop, BsShopWindow, BsTelephone } from "react-icons/bs";
+import imge from "../img/user.jpeg";
 
 function SuiviAvis() {
   return (
@@ -136,21 +137,311 @@ function SuiviAvis() {
 
               <div className="avis-container--avislist">
                 <div className="list-avis">
-                  <div className="user">
-                    <div className="user__image"></div>
-                    <div className="user__name"></div>
+                  <div className="list-avis__user">
+                    <img
+                      src={imge}
+                      className="list-avis__user--img"
+                      alt="user-img"
+                    />
+                    <div className="list-avis__user--name">Jean Jean</div>
                   </div>
-                  <div className="user-avis">
-                    <div className="store__header">Magasin</div>
-                    <div className="store__name">
-                      <div className=""></div>
-                      <div className="store__name--"></div>
+                  <div className="list-avis__store">
+                    <div className="list-avis__store--title">Magasin</div>
+                    <div className="list-avis__store--name">
+                      <div className="">
+                        <p>
+                          Leclerc <span> - Atlantis </span>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div>recomnded</div>
-                  <div>note</div>
-                  <div>phone-icon</div>
-                  <div>details</div>
+                  <div className=" list-avis__recommend">
+                    <div>Recommended</div>
+                    <div className=" list-avis__recommend--oui">Oui</div>
+                  </div>
+                  <div className=" list-avis__note">
+                    <div>Note</div>
+                    <div>
+                      <span className=" list-avis__note--chiffre">4</span>/5
+                    </div>
+                  </div>
+                  <div className="list-avis__phone">
+                    <BsTelephone className="list-avis__phone--icon" />
+                  </div>
+                  <div className="list-avis__details">DÉTAILS</div>
+                </div>
+
+                <div className="list-avis">
+                  <div className="list-avis__user">
+                    <img
+                      src={imge}
+                      className="list-avis__user--img"
+                      alt="user-img"
+                    />
+                    <div className="list-avis__user--name">Jean Jean</div>
+                  </div>
+                  <div className="list-avis__store">
+                    <div className="list-avis__store--title">Magasin</div>
+                    <div className="list-avis__store--name">
+                      <div className="">
+                        <p>
+                          Leclerc <span> - Atlantis </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" list-avis__recommend">
+                    <div>Recommended</div>
+                    <div className=" list-avis__recommend--oui">Oui</div>
+                  </div>
+                  <div className=" list-avis__note">
+                    <div>Note</div>
+                    <div>
+                      <span className=" list-avis__note--chiffre">4</span>/5
+                    </div>
+                  </div>
+                  <div className="list-avis__phone">
+                    <BsTelephone className="list-avis__phone--icon" />
+                  </div>
+                  <div className="list-avis__details">DÉTAILS</div>
+                </div>
+                <div className="list-avis">
+                  <div className="list-avis__user">
+                    <img
+                      src={imge}
+                      className="list-avis__user--img"
+                      alt="user-img"
+                    />
+                    <div className="list-avis__user--name">Jean Jean</div>
+                  </div>
+                  <div className="list-avis__store">
+                    <div className="list-avis__store--title">Magasin</div>
+                    <div className="list-avis__store--name">
+                      <div className="">
+                        <p>
+                          Leclerc <span> - Atlantis </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" list-avis__recommend">
+                    <div>Recommended</div>
+                    <div className=" list-avis__recommend--oui">Oui</div>
+                  </div>
+                  <div className=" list-avis__note">
+                    <div>Note</div>
+                    <div>
+                      <span className=" list-avis__note--chiffre">4</span>/5
+                    </div>
+                  </div>
+                  <div className="list-avis__phone">
+                    <BsTelephone className="list-avis__phone--icon" />
+                  </div>
+                  <div className="list-avis__details">DÉTAILS</div>
+                </div>
+                <div className="list-avis">
+                  <div className="list-avis__user">
+                    <img
+                      src={imge}
+                      className="list-avis__user--img"
+                      alt="user-img"
+                    />
+                    <div className="list-avis__user--name">Jean Jean</div>
+                  </div>
+                  <div className="list-avis__store">
+                    <div className="list-avis__store--title">Magasin</div>
+                    <div className="list-avis__store--name">
+                      <div className="">
+                        <p>
+                          Leclerc <span> - Atlantis </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" list-avis__recommend">
+                    <div>Recommended</div>
+                    <div className=" list-avis__recommend--oui">Oui</div>
+                  </div>
+                  <div className=" list-avis__note">
+                    <div>Note</div>
+                    <div>
+                      <span className=" list-avis__note--chiffre">4</span>/5
+                    </div>
+                  </div>
+                  <div className="list-avis__phone">
+                    <BsTelephone className="list-avis__phone--icon" />
+                  </div>
+                  <div className="list-avis__details">DÉTAILS</div>
+                </div>
+                <div className="list-avis">
+                  <div className="list-avis__user">
+                    <img
+                      src={imge}
+                      className="list-avis__user--img"
+                      alt="user-img"
+                    />
+                    <div className="list-avis__user--name">Jean Jean</div>
+                  </div>
+                  <div className="list-avis__store">
+                    <div className="list-avis__store--title">Magasin</div>
+                    <div className="list-avis__store--name">
+                      <div className="">
+                        <p>
+                          Leclerc <span> - Atlantis </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" list-avis__recommend">
+                    <div>Recommended</div>
+                    <div className=" list-avis__recommend--oui">Oui</div>
+                  </div>
+                  <div className=" list-avis__note">
+                    <div>Note</div>
+                    <div>
+                      <span className=" list-avis__note--chiffre">4</span>/5
+                    </div>
+                  </div>
+                  <div className="list-avis__phone">
+                    <BsTelephone className="list-avis__phone--icon" />
+                  </div>
+                  <div className="list-avis__details">DÉTAILS</div>
+                </div>
+                <div className="list-avis">
+                  <div className="list-avis__user">
+                    <img
+                      src={imge}
+                      className="list-avis__user--img"
+                      alt="user-img"
+                    />
+                    <div className="list-avis__user--name">Jean Jean</div>
+                  </div>
+                  <div className="list-avis__store">
+                    <div className="list-avis__store--title">Magasin</div>
+                    <div className="list-avis__store--name">
+                      <div className="">
+                        <p>
+                          Leclerc <span> - Atlantis </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" list-avis__recommend">
+                    <div>Recommended</div>
+                    <div className=" list-avis__recommend--oui">Oui</div>
+                  </div>
+                  <div className=" list-avis__note">
+                    <div>Note</div>
+                    <div>
+                      <span className=" list-avis__note--chiffre">4</span>/5
+                    </div>
+                  </div>
+                  <div className="list-avis__phone">
+                    <BsTelephone className="list-avis__phone--icon" />
+                  </div>
+                  <div className="list-avis__details">DÉTAILS</div>
+                </div>
+                <div className="list-avis">
+                  <div className="list-avis__user">
+                    <img
+                      src={imge}
+                      className="list-avis__user--img"
+                      alt="user-img"
+                    />
+                    <div className="list-avis__user--name">Jean Jean</div>
+                  </div>
+                  <div className="list-avis__store">
+                    <div className="list-avis__store--title">Magasin</div>
+                    <div className="list-avis__store--name">
+                      <div className="">
+                        <p>
+                          Leclerc <span> - Atlantis </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" list-avis__recommend">
+                    <div>Recommended</div>
+                    <div className=" list-avis__recommend--oui">Oui</div>
+                  </div>
+                  <div className=" list-avis__note">
+                    <div>Note</div>
+                    <div>
+                      <span className=" list-avis__note--chiffre">4</span>/5
+                    </div>
+                  </div>
+                  <div className="list-avis__phone">
+                    <BsTelephone className="list-avis__phone--icon" />
+                  </div>
+                  <div className="list-avis__details">DÉTAILS</div>
+                </div>
+                <div className="list-avis">
+                  <div className="list-avis__user">
+                    <img
+                      src={imge}
+                      className="list-avis__user--img"
+                      alt="user-img"
+                    />
+                    <div className="list-avis__user--name">Jean Jean</div>
+                  </div>
+                  <div className="list-avis__store">
+                    <div className="list-avis__store--title">Magasin</div>
+                    <div className="list-avis__store--name">
+                      <div className="">
+                        <p>
+                          Leclerc <span> - Atlantis </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" list-avis__recommend">
+                    <div>Recommended</div>
+                    <div className=" list-avis__recommend--oui">Oui</div>
+                  </div>
+                  <div className=" list-avis__note">
+                    <div>Note</div>
+                    <div>
+                      <span className=" list-avis__note--chiffre">4</span>/5
+                    </div>
+                  </div>
+                  <div className="list-avis__phone">
+                    <BsTelephone className="list-avis__phone--icon" />
+                  </div>
+                  <div className="list-avis__details">DÉTAILS</div>
+                </div>
+                <div className="list-avis">
+                  <div className="list-avis__user">
+                    <img
+                      src={imge}
+                      className="list-avis__user--img"
+                      alt="user-img"
+                    />
+                    <div className="list-avis__user--name">Jean Jean</div>
+                  </div>
+                  <div className="list-avis__store">
+                    <div className="list-avis__store--title">Magasin</div>
+                    <div className="list-avis__store--name">
+                      <div className="">
+                        <p>
+                          Leclerc <span> - Atlantis </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" list-avis__recommend">
+                    <div>Recommended</div>
+                    <div className=" list-avis__recommend--oui">Oui</div>
+                  </div>
+                  <div className=" list-avis__note">
+                    <div>Note</div>
+                    <div>
+                      <span className=" list-avis__note--chiffre">4</span>/5
+                    </div>
+                  </div>
+                  <div className="list-avis__phone">
+                    <BsTelephone className="list-avis__phone--icon" />
+                  </div>
+                  <div className="list-avis__details">DÉTAILS</div>
                 </div>
               </div>
             </div>
