@@ -9,13 +9,12 @@ html {
   //scroll-behavior: smooth;
 }
 body {
-  background-color: #e5e5e5;
-  color: #777;
+  background-color: $color-white;
+  color: $color-black;
   //font-family: 65%; //
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 26px;
-  color: #000;
 }

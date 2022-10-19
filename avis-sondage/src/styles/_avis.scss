@@ -1,47 +1,41 @@
 .sectionAvis {
-  //height: 100vh;
-  //width: 100%;
-  //margin: 2rem;
 }
 .avis {
   display: grid;
-  grid-template-columns: 20rem auto;
+  grid-template-columns: 20% auto;
   height: 90.2%;
   position: relative;
 
   &__left {
-    background-color: #00c897;
+    background-color: $color-primary;
     display: grid;
     grid-template-rows: auto 15rem;
-    position: absolute;
-    height: 100vh;
+    &--up {
+    }
     &--down {
-      background-color: rgb(191, 181, 181);
+      background-color: $color-grey-light-1;
       text-align: center;
       padding: 2rem;
     }
   }
-  &__cnetre {
+  &__centre {
     text-align: center;
     margin-top: 5rem;
     &--sondage {
-      border-top: 2px solid black;
+      border-top: 2px solid $color-black;
       display: inline;
       padding-top: 5px;
+      color: $color-black-2;
     }
   }
   &__right {
-    background-color: #ffffff;
-    position: fixed;
-    left: 20%;
-    width: 80%;
-    height: 100vh;
-    overflow: scroll;
+    background-color: $color-white;
+    overflow: auto scroll;
     &--header {
       padding: 2rem;
     }
     &--title {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid $color-black;
       display: inline-block;
       margin-left: 2rem;
       padding: 0 0.5rem;
@@ -58,20 +52,24 @@
 
 .avisHeader {
   display: flex;
-  justify-items: center;
   justify-content: center;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid $color-black;
+  padding: 1rem;
 
   &__GD {
     display: inline-block;
-    margin: 1.5rem;
+    margin-right: 1rem;
     padding: 0.5rem;
-    border: 1px solid #000000;
+    border: 1px solid $color-black;
     border-radius: 5px;
-    justify-self: center;
+    align-self: center;
+    text-align: center;
   }
   &__name {
     align-self: center;
+    &--title {
+      color: $color-black-2;
+    }
   }
 }
 .surpermarket {
@@ -91,7 +89,6 @@
 }
 
 .select {
-  //background-color: red;
   padding: 6px 6px;
   min-width: 10rem;
   border: none;
@@ -111,41 +108,30 @@
 }
 
 .btn {
-  padding: 0.5rem 1.3rem;
-  background: #f35421;
+  padding: 10px 16px;
+  background: $color-error;
   display: inline-block;
-  color: white;
+  color: $color-grey-light-1;
   border-radius: 2px;
-}
-
-.connexion {
-  font-size: 12px;
-  margin-top: 1rem;
-  cursor: pointer;
+  border: none;
 }
 
 .avis-container {
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: 8rem 1fr;
   overflow: scroll;
   &--date {
-    grid-row: 1 span 1;
+    grid-row: 1 / 1;
   }
   &--statistics {
-    grid-row: 2 / 3;
+    grid-row: 2 / 2;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(6, 1fr);
-    //text-align: center;
-    // overflow: hidden;
-    //position: absolute;
-    // top: 30%;
 
     grid-gap: 2rem;
-    //padding: 1.5rem 1.5rem;
   }
   &--avislist {
-    //grid-row: 3/-1;
     margin-top: 4rem;
     justify-content: center;
     align-items: center;
@@ -155,13 +141,13 @@
 .subdate {
   display: flex;
   justify-items: center;
-  // justify-content: center;
+
   align-items: center;
   &__droplist {
     display: flex;
     justify-content: space-between;
     justify-items: center;
-    // align-items: center;
+
     margin-right: auto;
     padding: 1.5rem 1.5rem;
 
@@ -188,8 +174,8 @@
     &--input {
       padding: 0.7rem;
       border: none;
-      background: rgb(187, 184, 184);
-
+      background: $color-grey-dark-2;
+      border-radius: 4px;
       &:focus {
         outline: none;
       }
@@ -201,10 +187,25 @@
 }
 
 .select-right {
-  background-color: #eeeeee;
-  padding: 6px 6px;
+  background-color: $color-grey-light-2;
+  padding: 10px 10px;
   padding-left: 3.5rem;
-  //padding-right: -3rem;
+
+  min-width: 10rem;
+  border: none;
+  border-radius: 2px;
+  &:focus {
+    border: unset;
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+.select-left {
+  background-color: $color-grey-dark-1;
+  padding: 10px 10px;
+  padding-left: 3.5rem;
   min-width: 10rem;
   border: none;
   border-radius: 2px;
@@ -235,15 +236,15 @@
 .box {
   width: 236px;
   height: 192px;
-  background-color: #d8d8d8;
+  background-color: $color-grey-light-2;
   border-radius: 8px;
   position: relative;
   //text-align: center;
-
+  margin-bottom: 4rem;
   &__chiffre {
     position: absolute;
     top: 30%;
-    left: 28%;
+    left: 24%;
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
@@ -255,7 +256,7 @@
     position: absolute;
     text-align: center;
     margin-top: 1rem;
-    color: #000;
+    color: $color-black;
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
@@ -263,7 +264,7 @@
     line-height: 40px;
     &--1 {
       top: 40%;
-      left: 30%;
+      left: 23%;
     }
     &--2 {
       top: 40%;
@@ -271,39 +272,42 @@
     }
     &--3 {
       top: 40%;
-      left: 30%;
+      left: 28%;
     }
     &--4 {
       top: 40%;
-      left: 12%;
+      left: 20%;
+      line-height: 1.5;
     }
   }
 
   &__tage {
     position: absolute;
-    top: 90%;
-    left: 18%;
+    top: 85%;
+    left: 25%;
     transform: translate(10%, 10%);
-    width: 132px;
-    height: 43px;
-    color: #eeeeee;
+    color: $color-grey-dark-1;
     text-align: center;
 
     &--1 {
-      background: #f35421;
+      background: $color-error;
       border-radius: 8px;
+      padding: 0.5rem 1.5rem;
     }
     &--2 {
-      background: #f35421;
+      background: $color-error;
       border-radius: 8px;
+      padding: 0.5rem 1.5rem;
     }
     &--3 {
-      background: #2bc768;
+      background: $color-success;
       border-radius: 8px;
+      padding: 0.5rem 1.5rem;
     }
     &--4 {
-      background: #2bc768;
+      background: $color-success;
       border-radius: 8px;
+      padding: 0.5rem 1.5rem;
     }
   }
 }
@@ -314,7 +318,7 @@
   display: flex;
   //padding: 18px 10px 18px 12px;
   padding: 12px 12px;
-  background: #f2f2f2;
+  background: $color-grey-light-1;
   border-radius: 4px;
   margin: 10px;
   align-items: center;
@@ -333,18 +337,17 @@
       margin-right: 10px;
     }
     &--name {
-      //align-self: center;
     }
   }
 
   &__store {
-    //grid-column: 4 / 6;
     flex: 3;
-    color: gray;
+    color: $color-grey-dark-3;
     &--title {
     }
     &--name {
-      color: #000;
+      color: $color-black;
+      margin-top: 4px;
     }
   }
 
@@ -352,49 +355,51 @@
     //grid-column: 6 / 8;
     margin-right: auto;
     flex: 3;
-    color: gray;
+    color: $color-grey-dark-3;
     &--oui {
-      color: #000;
+      margin-top: 4px;
+      color: $color-black;
     }
   }
   &__note {
     // grid-column: 8 / 10;
     flex: 2;
-    color: gray;
+    color: $color-grey-dark-3;
+
     &--chiffre {
-      color: #000;
+      color: $color-black;
+      margin-top: 4px;
     }
   }
   &__phone {
     // grid-column: 10 / 11;
     flex: 1;
-    font-size: 30px;
+
+    //align-self: center;
     &--icon {
-      background: #2bc768;
+      background: $color-success;
       //display: block;
-      width: 25px;
-      height: 25px;
+      width: 35px;
+      height: 35px;
       border-radius: 8px;
-      padding: 8px;
-      font-size: 30rem;
+      padding: 4px;
+      //font-size: 30rem;
       //opacity: 0.1;
-      color: gray;
+      align-self: center;
+      color: $color-grey-dark-3;
     }
   }
   &__details {
     // grid-column: 11 / -1;
     flex: 1;
-    background: rgba(0, 0, 0, 0.12);
+    background: $color-grey-dark-2;
     padding: 8px 16px;
     border-radius: 4px;
-    color: gray;
+    color: $color-grey-dark-3;
   }
 }
 
 .user {
   display: flex;
   justify-content: space-between;
-}
-
-.dd {
 }
