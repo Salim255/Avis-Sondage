@@ -51,12 +51,17 @@ const Sondage = () => {
                       <p>Traiteur</p>
                     </div>
                     <span
-                      className="custom-arrow"
+                      className={arrow1 ? "custom-arrow2" : "custom-arrow"}
                       onClick={arrowMagasinHandler}
                     ></span>
                   </div>
                   <ul className={arrow1 ? ["drop__list"] : "hide"}>
-                    <li className="drop__list--option">Salim</li>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
                   </ul>
                 </div>
               </div>
@@ -72,12 +77,17 @@ const Sondage = () => {
                       <p>Atlantis</p>
                     </div>
                     <span
-                      className="custom-arrow"
+                      className={arrow2 ? "custom-arrow2" : "custom-arrow"}
                       onClick={arrowMarketHandler}
                     ></span>
                   </div>
                   <ul className={arrow2 ? ["drop__list"] : "hide"}>
                     <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
                   </ul>
                 </div>
               </div>
@@ -173,15 +183,11 @@ const Sondage = () => {
                     </div>
                   </div>
                   <div className="box ">
-                    <div className="box__chiffre">75%</div>
-
-                    <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
-                    </d>
+                    <div className="box__chiffre">1212</div>
+                    <p className="box__text box__text--2 box__text">notes</p>
 
                     <div className="box__tage">
-                      <p className="box__tage--4">+22%</p>
+                      <p className="box__tage--2">-12%</p>
                     </div>
                   </div>
                 </div>
@@ -221,15 +227,11 @@ const Sondage = () => {
                     </div>
                   </div>
                   <div className="box ">
-                    <div className="box__chiffre">75%</div>
-
-                    <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
-                    </d>
+                    <div className="box__chiffre">1212</div>
+                    <p className="box__text box__text--2 box__text">notes</p>
 
                     <div className="box__tage">
-                      <p className="box__tage--4">+22%</p>
+                      <p className="box__tage--2">-12%</p>
                     </div>
                   </div>
                   <div className="box ">
@@ -252,7 +254,7 @@ const Sondage = () => {
                     <p>20/09/2022 - fini</p>
                   </div>
                   <div className="finishedSurvey__header--duration">
-                    <p> Temps du sondage : 8jours</p>
+                    <p> Temps du sondage : 8 jours</p>
                   </div>
                 </div>
                 <div className="finishedSurvey__statistics">

@@ -241,9 +241,13 @@
     border-radius: 4px;
   }
   &__list {
-    height: 2.5rem;
+    height: 5rem;
     overflow: auto scroll;
-    background: $color-grey-dark-3;
+    background: $color-white;
+    position: absolute;
+    width: 11.25rem;
+    z-index: 1;
+    border-radius: 4px;
     &--option {
       cursor: pointer;
       padding-top: 0.5rem;
@@ -252,13 +256,14 @@
       padding: 0.5rem;
 
       &:hover {
-        background: $color-primary;
+        background: $color-tertiary;
       }
     }
   }
 }
 
-.custom-arrow {
+.custom-arrow,
+.custom-arrow2 {
   position: absolute;
   top: 0;
   right: 0;
@@ -276,7 +281,9 @@
     left: 70%;
     transform: translate(-50%, -50%);
   }
+}
 
+.custom-arrow {
   &::after {
     border-left: var(--size) solid transparent;
     border-right: var(--size) solid transparent;
@@ -284,6 +291,16 @@
     top: 50%;
   }
 }
+
+.custom-arrow2 {
+  &::after {
+    border-left: var(--size) solid transparent;
+    border-right: var(--size) solid transparent;
+    border-bottom: var(--size) solid $color-grey-dark-3;
+    top: 50%;
+  }
+}
+
 .scroll {
   height: 80vh;
   overflow: auto scroll;
