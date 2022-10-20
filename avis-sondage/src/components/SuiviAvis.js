@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { BsShop, BsShopWindow, BsTelephone } from "react-icons/bs";
 import imge from "../img/user.jpeg";
 
 function SuiviAvis() {
+  const [arrow, setArrow] = useState(false);
+  const arrowHandler = (e) => {
+    setArrow(!arrow);
+
+    console.log(arrow);
+  };
+
   return (
     <>
       <section className="sectionAvis">
@@ -15,36 +22,60 @@ function SuiviAvis() {
                 </div>
                 <div className="avisHeader__name">
                   <h3>GAUTIER DECROIX</h3>
-                  <p className="avisHeader__title"> Manager</p>
+                  <p className="avisHeader__name--title"> Manager</p>
                 </div>
               </div>
 
-              <div className="avis__cnetre">
-                <h4 className="avis__cnetre--avis">AVIS</h4>
-                <h5 className="avis__cnetre--sondage">SONDAGE</h5>
+              <div className="avis__centre">
+                <h4 className="avis__centre--avis">AVIS</h4>
+                <h5 className="avis__centre--sondage">SONDAGE</h5>
               </div>
             </div>
 
-            <form className="avis__left--down">
-              <div className="surpermarket">
+            <div className="avis__left--down">
+              <div>
+                <div className="dropDown">
+                  <div className="dropDown__select">
+                    <p>Select</p>
+                  </div>
+                  <span
+                    className={arrow ? "custom-arrowB" : "custom-arrowA"}
+                    onClick={arrowHandler}
+                  ></span>
+                </div>
+                <ul className={arrow ? ["dropDown__list"] : "hide"}>
+                  <li className="dropDown__list--option">Salim</li>
+                  <li className="dropDown__list--option">Hassan</li>
+                  <li className="dropDown__list--option">Adam</li>
+                </ul>
+              </div>
+              {/*  <div className="surpermarket">
                 <div className="surpermarket__icon">
                   <BsShopWindow className="icon" />
                 </div>
                 <div className="surpermarket__input">
                   <label for="market"></label>
-                  <select name="market" id="market" className="select">
+                  <select
+                    name="market"
+                    id="market"
+                    className="select select-left"
+                  >
                     <option value="auchan">Auchan</option>
                     <option value="lidl">Lidl</option>
                   </select>
                 </div>
-              </div>
+              </div> */}
               <div className="grocery">
                 <div className="grocery__icon">
                   <BsShop className="icon" />
                 </div>
                 <div className="grocery__input">
                   <label for="grocery"></label>
-                  <select name="grocery" id="grocery" className="select">
+                  <select
+                    name="grocery"
+                    id="grocery"
+                    className="select  select-left"
+                  >
                     <option value="match">Match</option>
                     <option value="carrefour">Carrefour</option>
                   </select>
@@ -53,7 +84,7 @@ function SuiviAvis() {
               <div className="btn connexion">
                 <p>DECONNEXION</p>
               </div>
-            </form>
+            </div>
           </div>
           {/*  */}
           <div className="avis__right">
@@ -70,13 +101,13 @@ function SuiviAvis() {
                 <div className="subdate">
                   <div className="subdate__droplist">
                     <div className="subdate__droplist--title">Trier par </div>
-                    <form className="subdate__droplist--list">
+                    <div className="subdate__droplist--list">
                       <label for="type"></label>
                       <select name="type" id="type" className="select-right ">
                         <option value="rayon">Rayon</option>
                         <option value="lidl">Lidl</option>
                       </select>
-                    </form>
+                    </div>
                   </div>
                   <div className="subdate__date">
                     <input
@@ -100,7 +131,9 @@ function SuiviAvis() {
               <div className="avis-container--statistics">
                 <div className="box statistic__1">
                   <div className="box__chiffre">1214</div>
-                  <p className="box__text box__text--1 box__text">en moyenne</p>
+                  <p className="box__text box__text--1 box__text">
+                    commentaires
+                  </p>
 
                   <div className="box__tage">
                     <p className="box__tage--1">-12%</p>
@@ -125,9 +158,10 @@ function SuiviAvis() {
                 <div className="box statistic__4">
                   <div className="box__chiffre">75%</div>
 
-                  <p className="box__text--4 box__text">
-                    de demandes de rappel
-                  </p>
+                  <d className="box__text--4 box__text">
+                    <p> de demandes</p>
+                    <p>de rappel</p>
+                  </d>
 
                   <div className="box__tage">
                     <p className="box__tage--4">+22%</p>

@@ -1,0 +1,33 @@
+.active {
+  border-bottom: 2px solid black;
+  padding: 0.2rem 0.5rem;
+}
+
+.noActive {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.btn {
+  padding: 16px 16px;
+  background: $color-error;
+  display: inline-block;
+  color: $color-grey-light-2;
+  border-radius: 2px;
+  border: none;
+  &:hover {
+    @include btn-animation;
+  }
+}
+
+.small-border {
+  /* position: absolute;
+  left: 2%;
+  right: 0;
+  border: 1px solid #e5e5e5;
+  background: red;
+  width: 160px;
+  height: 2rem; */
+}
+
+.boxx {
+}

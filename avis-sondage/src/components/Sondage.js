@@ -24,19 +24,19 @@ const Sondage = () => {
       <section className="sondage-section">
         <div className="sondage-section__left">
           <div className="sondage-section__left--up">
-            <div className="manger">
-              <div className="manger__GD">
+            <div className="manager">
+              <div className="manager__GD">
                 <p>GD</p>
               </div>
-              <div className="manger__name">
-                <h3>GAUTIER DECROIX</h3>
-                <p className="manger__title"> Manager</p>
+              <div className="manager__name">
+                <h3 className="manager__name--name">GAUTIER DECROIX</h3>
+                <p className="manager__title noActive"> Manager</p>
               </div>
             </div>
           </div>
           <div className="sondage-section__left--center">
-            <h3>AVIS</h3>
-            <h4>Sondage</h4>
+            <p className="noActive">AVIS</p>
+            <p className="active">SONDAGE</p>
           </div>
           <div className="sondage-section__left--down">
             <div className="leftDown">
@@ -50,6 +50,7 @@ const Sondage = () => {
                     <div className="">
                       <p>Traiteur</p>
                     </div>
+                    <span className="small-border"></span>
                     <span
                       className={arrow1 ? "custom-arrow2" : "custom-arrow"}
                       onClick={arrowMagasinHandler}
@@ -94,8 +95,8 @@ const Sondage = () => {
             </div>
 
             <div className="connecexion">
-              <button type="submit" className="btn connecexion">
-                CONNECEXION
+              <button type="submit" className="btn connecexion__btn">
+                CONNEXION
               </button>
             </div>
           </div>
@@ -131,7 +132,7 @@ const Sondage = () => {
 
             <div className="right__date--ajouter">
               <CiCirclePlus className="ajouter__icon" />
-              <button className="ajouter__text">AJOUTER</button>
+              <p className="ajouter__text">AJOUTER</p>
             </div>
           </div>
           <div className="right__card">
@@ -147,15 +148,18 @@ const Sondage = () => {
                 </div>
                 <div className="programmedSurvey__statistics">
                   <div className="box ">
-                    <div className="box__chiffre">75%</div>
-
-                    <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
-                    </d>
+                    <div className="box__planning">
+                      <div className="box__planning--plng">UI du Planning</div>
+                      <div className="box__planning--detail">
+                        <p>Details</p>
+                      </div>
+                      <div className="box__planning--modifier">Modifier</div>
+                    </div>
 
                     <div className="box__tage">
-                      <p className="box__tage--4">+22%</p>
+                      <p className="box__tage--4 box__tage--4 box__tage--arreter">
+                        Arreter
+                      </p>
                     </div>
                   </div>
                   <div className="box ">
