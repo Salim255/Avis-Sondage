@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { BsShop, BsShopWindow, BsTelephone } from "react-icons/bs";
 import { CiCirclePlus } from "react-icons/ci";
 import imge from "../img/user.jpeg";
+import RetourSondage from "./RetourSondage";
+import PopUp from "./PopUp";
 
 const Sondage = () => {
   const [arrow1, setArrow1] = useState(false);
@@ -21,7 +24,7 @@ const Sondage = () => {
 
   return (
     <>
-      <section className="sondage-section">
+      <section className="sondage-section" id="sondage-section">
         <div className="sondage-section__left">
           <div className="sondage-section__left--up">
             <div className="manager">
@@ -35,7 +38,9 @@ const Sondage = () => {
             </div>
           </div>
           <div className="sondage-section__left--center">
-            <p className="noActive">AVIS</p>
+            <Link to="/avis" className="noActive">
+              AVIS
+            </Link>
             <p className="active">SONDAGE</p>
           </div>
           <div className="sondage-section__left--down">
@@ -151,7 +156,7 @@ const Sondage = () => {
                     <div className="box__planning">
                       <div className="box__planning--plng">UI du Planning</div>
                       <div className="box__planning--detail">
-                        <p>Details</p>
+                        <a href="#sondagePopUP">Details</a>
                       </div>
                       <div className="box__planning--modifier">Modifier</div>
                     </div>
@@ -316,6 +321,7 @@ const Sondage = () => {
           </div>
         </div>
       </section>
+      <PopUp />
     </>
   );
 };

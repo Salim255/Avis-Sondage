@@ -2,7 +2,7 @@ import React from "react";
 
 function RetourSondage() {
   return (
-    <section className="section-retour-sondage ">
+    <section className="section-retour-sondage " id="sondage">
       <div className="retour-sondage">
         <div className="retour-sondage__up"></div>
         <div className="retour-sondage__center sondage">

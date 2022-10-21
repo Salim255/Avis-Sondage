@@ -1,0 +1,48 @@
+.popup {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba($color-black, $alpha: 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.9s ease;
+
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+  &__content {
+    border-radius: 8px;
+    @include absCenter;
+    width: 75%;
+    height: 80rem;
+    background: $color-white;
+    box-shadow: 0 2rem 4rem rgba($color-black, $alpha: 0.2);
+
+    &--close {
+      margin-left: auto;
+      padding: 0.5rem 1rem;
+      /*  border-radius: 50%;
+
+      border: 1px solid rgba($color-black, $alpha: 0.5); */
+      &:link,
+      &:visited {
+        color: rgba($color-black, $alpha: 0.5);
+        text-decoration: none;
+        font-size: 3rem;
+        transition: all 0.2s ease;
+        &:hover {
+          color: $color-error;
+        }
+      }
+    }
+  }
+}
+
+.salim {
+  &:target {
+    background-color: red;
+  }
+}

@@ -3,8 +3,14 @@
 
   display: grid;
   grid-template-rows: max-content 1fr max-content;
-  border-radius: 4px;
+  border-radius: 8rem;
+
   &__up {
+    display: flex;
+    background: $color-grey-light-3;
+    padding: 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
   &__center {
     padding: 4rem;

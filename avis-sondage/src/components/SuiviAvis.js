@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { BsShop, BsShopWindow, BsTelephone } from "react-icons/bs";
 import imge from "../img/user.jpeg";
 
@@ -28,7 +29,9 @@ function SuiviAvis() {
 
               <div className="avis__centre">
                 <h4 className="avis__centre--avis">AVIS</h4>
-                <h5 className="avis__centre--sondage">SONDAGE</h5>
+                <Link to="/sondage" className="avis__centre--sondage">
+                  SONDAGE
+                </Link>
               </div>
             </div>
 
