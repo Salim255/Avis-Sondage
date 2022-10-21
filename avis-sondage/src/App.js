@@ -1,13 +1,13 @@
 import "./App.scss";
 import SuiviAvis from "./components/SuiviAvis";
-import SondageCopy from "./components/SondageCopy";
-import Test from "./components/Test";
 import Sondage from "./components/Sondage";
+import AvisClient from "./components/AvisClient";
 
 function App() {
   return (
     <div>
-      <Sondage />
+      <AvisClient />
+      {/* <Sondage /> */}
     </div>
   );
 }
