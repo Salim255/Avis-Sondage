@@ -1,0 +1,92 @@
+.retour-sondage {
+  background: $color-white;
+
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  border-radius: 4px;
+  &__up {
+  }
+  &__center {
+    padding: 4rem;
+  }
+  &__down {
+    padding: 1rem;
+    background: $color-grey-light-1;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    &--creer {
+      margin-left: auto;
+      border-radius: 4px;
+      background: $color-secondary;
+      width: 91px;
+      padding: 8px 16px;
+      text-align: center;
+      transition: all 0.2s ease;
+      &:hover {
+        @include btn-animation;
+      }
+    }
+  }
+}
+
+.sondage-title {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    font-weight: 400;
+    font-size: 20px;
+  }
+  &__title {
+  }
+}
+
+.sondage-date {
+  // margin-top: 2rem;
+  margin-bottom: 2rem;
+  &__titre {
+    font-weight: 400;
+    font-size: 20px;
+  }
+  &__date {
+    display: flex;
+    margin: 2rem 2rem;
+    //justify-content: space-around;
+    &--1 {
+      margin-right: 2rem;
+    }
+  }
+}
+
+.sondage-body {
+  &__contexte {
+    &--header {
+      font-size: 20px;
+      font-weight: 400;
+    }
+    &--contexte {
+      padding: 1rem;
+      border: 1px solid $color-grey-dark-2;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.dateStyle {
+  padding: 0.8rem 1rem;
+  background: $color-grey-dark-2;
+  border-radius: 4px;
+}
+.sondagTxtStyle {
+  padding: 1rem;
+  border: 1px solid $color-grey-dark-2;
+  border-radius: 4px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.sondageTitleStyle {
+  font-weight: 400;
+  font-size: 20px;
+}
