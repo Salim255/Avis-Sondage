@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   calculateComments,
   calculatAvgRatting,
+  calculateCallPercentage,
 } from "../features/ratting/reviewSlice";
 import AvisItem from "./AvisItem";
 
@@ -15,9 +16,8 @@ function SuiviAvis() {
   const [arrow2, setArrow2] = useState(false);
   const [arrow3, setArrow3] = useState(false);
 
-  const { reviewItems, totalComments, avgRatting } = useSelector(
-    (store) => store.reviews
-  );
+  const { reviewItems, totalComments, avgRatting, callPercentage } =
+    useSelector((store) => store.reviews);
   const dispatch = useDispatch();
 
   const arrowMagasinHandler = (e) => {
@@ -59,6 +59,7 @@ function SuiviAvis() {
   useEffect(() => {
     dispatch(calculateComments());
     dispatch(calculatAvgRatting());
+    dispatch(calculateCallPercentage());
   }, [dispatch, reviewItems]);
 
   return (
@@ -231,7 +232,7 @@ function SuiviAvis() {
                   </div>
                 </div>
                 <div className="box statistic__4">
-                  <div className="box__chiffre">75%</div>
+                  <div className="box__chiffre">{callPercentage}%</div>
 
                   <div className="box__text--4 box__text">
                     <p> de demandes</p>
