@@ -1,6 +1,11 @@
-.active {
+.activeS {
   border-bottom: 2px solid black;
   padding: 0.2rem 0.5rem;
+  display: inline-block;
+}
+.activeA {
+  border-bottom: 2px solid black;
+  padding: 0.2rem 0rem;
 }
 
 .noActive {
@@ -20,14 +25,8 @@
 }
 
 .small-border {
-  /* position: absolute;
-  left: 2%;
-  right: 0;
-  border: 1px solid #e5e5e5;
-  background: red;
-  width: 160px;
-  height: 2rem; */
 }
 
-.boxx {
+.sbm {
+  margin-bottom: 1rem;
 }

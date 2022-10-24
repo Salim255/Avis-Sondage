@@ -1,4 +1,6 @@
-* {
+*,
+*::after,
+*::before {
   //Applaying 0 padding and margin to each element in html page, to start clean
   margin: 0;
   padding: 0;
@@ -7,22 +9,44 @@
 
 html {
   //scroll-behavior: smooth;
+
+  //To define whats 1rem is
   font-size: 62.5%;
+
+  /*
+-phone
+-tab-port
+-tab-land
+-big-desktop
+*/
+
+  @include respond(tab-land) {
+    //width <1200px we define 1rem == 9px=> 9/16*100 = 56.25%
+    font-size: 56.25%; //
+  }
+  @include respond(tab-port) {
+    //width <900px we define 1rem == 8px=> 8/16*100 = 50%
+    font-size: 50%; //
+  }
+  @include respond(big-desktop) {
+    //width >1200px <1800px we define 1rem == 12px=> 12/16*100 = 75%
+    font-size: 75%; //
+  }
 }
 body {
   background-color: $color-white;
   color: $color-black;
   font-family: "Inter";
   font-style: normal;
-
-  line-height: 26px;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
 }
 .ratting-section {
-  padding: 10rem;
+  padding: 20rem;
   background-color: $color-grey-light-3;
 }
 .section-retour-sondage {
-  padding: 10rem;
+  padding: 20rem;
   background-color: $color-grey-light-3;
   color: rgba(0, 0, 0, 0.6);
 }

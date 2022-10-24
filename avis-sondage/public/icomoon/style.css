@@ -1,0 +1,40 @@
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
+.icon-star {
+  width: 0.9285714285714285em;
+}
+
+.icon-thumbs-o-up {
+  width: 0.8571428571428571em;
+}
+
+.icon-thumbs-o-down {
+  width: 0.8571428571428571em;
+}
+
+.icon-star-half-empty {
+  width: 0.9285714285714285em;
+}
+
+.icon-thumbs-up {
+  width: 0.8928571428571428em;
+}
+
+.icon-thumbs-down {
+  width: 0.8928571428571428em;
+}

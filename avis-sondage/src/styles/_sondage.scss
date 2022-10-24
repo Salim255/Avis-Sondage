@@ -3,13 +3,13 @@
   position: relative;
 
   &__select {
-    padding: 0.5rem;
+    padding: 1rem;
   }
   &__list {
     &--option {
       cursor: pointer;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
       overflow: hidden;
 
       &:hover {
@@ -24,13 +24,13 @@
     background: rgb(168, 168, 164);
 
     height: 100%;
-    width: 3rem;
+    width: 6rem;
     &:hover {
       cursor: pointer;
     }
     &::after,
     &::before {
-      --size: 0.65em;
+      --size: 1em;
       content: "";
       position: absolute;
       width: 0;
@@ -119,6 +119,7 @@
   height: 100vh;
   display: grid;
   grid-template-columns: /* max-content 1fr */ min-content 1fr;
+
   &__left {
     background: $color-primary;
     display: grid;
@@ -128,19 +129,23 @@
       grid-row: 1/3;
       border-bottom: 2px solid;
       margin-bottom: 3rem;
+      align-self: center;
     }
 
     &--center {
       grid-row: 3/9;
       text-align: center;
       justify-self: center;
+      display: flex;
+      flex-direction: column;
+      //justify-content: space-between;
     }
     &--down {
       grid-row: 10/-1;
       background: $color-grey-light-1;
       display: flex;
       flex-direction: column;
-      padding: 1rem;
+      padding: 2rem;
     }
   }
   /////
@@ -191,11 +196,12 @@
 .manager {
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  padding: 2rem 1rem;
+  //font-size: 1.5rem;
   &__GD {
     display: inline-block;
-    margin-right: 0.7rem;
-    padding: 0.5rem 0.8rem;
+    margin-right: 1.5rem;
+    padding: 1rem 1.6rem;
     border: 1px solid $color-black;
     border-radius: 5px;
     align-self: center;
@@ -215,9 +221,9 @@
 
   &__btn {
     padding: 8px 16px;
-    width: 11.25rem;
+    width: 15rem;
     font-weight: 700;
-    box-shadow: 4px 5px 4px rgba($color-grey-dark-3, $alpha: 0.8);
+    box-shadow: 0rem 2rem 3rem rgba($color-black, $alpha: 0.2);
     transition: all 0.2s ease-in;
     &:hover {
       cursor: pointer;
@@ -231,9 +237,9 @@
   margin-bottom: auto;
   &__magasin {
     display: flex;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     &--icon {
-      margin-right: 40px;
+      margin-right: 4rem;
     }
   }
 }
@@ -243,22 +249,22 @@
   flex: 2;
 
   text-align: center;
-  width: 11.25rem;
-  //height: 43.9px;
+  width: 19rem;
+  height: 4rem;
 
   &__select {
     background: $color-grey-light-2;
-    padding: 5px;
+    padding: 0.5rem;
     position: relative;
-    border-radius: 4px;
-    box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.4);
+    border-radius: 0.2rem;
+    box-shadow: 0rem 0.5rem 1rem rgba($color: #000000, $alpha: 0.4);
   }
   &__list {
     height: 5rem;
     overflow: auto scroll;
     background: $color-grey-light-2;
     position: absolute;
-    width: 11.25rem;
+    width: 19rem;
     z-index: 1;
     border-radius: 4px;
     margin-top: 2px;
@@ -285,7 +291,7 @@
   background: $color-grey-light-2;
   border-radius: 4px;
   height: 100%;
-  width: 3rem;
+  width: 5rem;
   &::after {
     --size: 0.5em;
     content: "";
@@ -325,27 +331,24 @@
   overflow: auto scroll;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-  //justify-content: center;
-  //justify-items: center;
-  //grid-template-columns: minmax(200px, 300px) repeat(3, 1fr);
 }
 
 .programmedSurvey {
   &__header {
     display: flex;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     justify-content: center;
     justify-items: center;
     text-align: center;
 
     &--title {
       margin-right: auto;
-      margin-left: 2rem;
+      margin-left: 3rem;
     }
     &--duration {
-      margin-right: 2rem;
+      margin-right: 3rem;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 1.8rem;
     }
   }
 
@@ -353,7 +356,19 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+
+    @include respond(phone) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @include respond(tab-port) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond(tab-land) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
 
@@ -361,15 +376,15 @@
   &__header {
     display: flex;
 
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     &--title {
       margin-right: auto;
-      margin-left: 2rem;
+      margin-left: 3rem;
     }
     &--duration {
-      margin-right: 2rem;
+      margin-right: 3rem;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 1.8rem;
     }
   }
 
@@ -377,7 +392,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 }
 
@@ -385,15 +400,15 @@
   &__header {
     display: flex;
 
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     &--title {
       margin-right: auto;
-      margin-left: 2rem;
+      margin-left: 3rem;
     }
     &--duration {
-      margin-right: 2rem;
+      margin-right: 3rem;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 1.8rem;
     }
   }
 
@@ -401,16 +416,24 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 }
 
 .ajouter {
   &__icon {
-    margin-right: 6px;
+    margin-right: 0.6rem;
   }
   &__text {
     border: none;
     background: $color-secondary;
+  }
+}
+
+.link {
+  text-decoration: none;
+  &:visited,
+  &:link {
+    color: rgba(0, 0, 0, 0.6);
   }
 }

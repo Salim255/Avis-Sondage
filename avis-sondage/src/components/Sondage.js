@@ -38,10 +38,10 @@ const Sondage = () => {
             </div>
           </div>
           <div className="sondage-section__left--center">
-            <Link to="/avis" className="noActive">
+            <Link to="/avis" className="noActive link sbm">
               AVIS
             </Link>
-            <p className="active">SONDAGE</p>
+            <p className="activeS">SONDAGE</p>
           </div>
           <div className="sondage-section__left--down">
             <div className="leftDown">
@@ -156,7 +156,9 @@ const Sondage = () => {
                     <div className="box__planning">
                       <div className="box__planning--plng">UI du Planning</div>
                       <div className="box__planning--detail">
-                        <a href="#sondagePopUP">Details</a>
+                        <a href="#sondagePopUP" className="link">
+                          Details
+                        </a>
                       </div>
                       <div className="box__planning--modifier">Modifier</div>
                     </div>
@@ -212,15 +214,20 @@ const Sondage = () => {
                 </div>
                 <div className="runningSurvey__statistics">
                   <div className="box ">
-                    <div className="box__chiffre">75%</div>
-
-                    <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
-                    </d>
+                    <div className="box__planning">
+                      <div className="box__planning--plng">UI du Planning</div>
+                      <div className="box__planning--detail">
+                        <a href="#sondagePopUP" className="link">
+                          Details
+                        </a>
+                      </div>
+                      <div className="box__planning--modifier">Modifier</div>
+                    </div>
 
                     <div className="box__tage">
-                      <p className="box__tage--4">+22%</p>
+                      <p className="box__tage--4 box__tage--4 box__tage--arreter">
+                        Arreter
+                      </p>
                     </div>
                   </div>
                   <div className="box ">
@@ -268,15 +275,20 @@ const Sondage = () => {
                 </div>
                 <div className="finishedSurvey__statistics">
                   <div className="box ">
-                    <div className="box__chiffre">75%</div>
-
-                    <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
-                    </d>
+                    <div className="box__planning">
+                      <div className="box__planning--plng">UI du Planning</div>
+                      <div className="box__planning--detail">
+                        <a href="#sondagePopUP" className="link">
+                          Details
+                        </a>
+                      </div>
+                      <div className="box__planning--modifier">Modifier</div>
+                    </div>
 
                     <div className="box__tage">
-                      <p className="box__tage--4">+22%</p>
+                      <p className="box__tage--4 box__tage--4 box__tage--arreter">
+                        Arreter
+                      </p>
                     </div>
                   </div>
                   <div className="box ">

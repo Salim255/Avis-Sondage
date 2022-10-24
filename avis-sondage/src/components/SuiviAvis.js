@@ -4,133 +4,188 @@ import { BsShop, BsShopWindow, BsTelephone } from "react-icons/bs";
 import imge from "../img/user.jpeg";
 
 function SuiviAvis() {
-  const [arrow, setArrow] = useState(false);
-  const arrowHandler = (e) => {
-    setArrow(!arrow);
+  const [arrow1, setArrow1] = useState(false);
+  const [arrow2, setArrow2] = useState(false);
+  const [arrow3, setArrow3] = useState(false);
 
-    console.log(arrow);
+  const arrowMagasinHandler = (e) => {
+    setArrow1(!arrow1);
+    if (arrow2 || arrow3) {
+      if (arrow2) {
+        setArrow2(!arrow2);
+      }
+      if (arrow3) {
+        setArrow3(!arrow3);
+      }
+    }
+  };
+  const arrowMarketHandler = (e) => {
+    setArrow2(!arrow2);
+    if (arrow1 || arrow3) {
+      if (arrow1) {
+        setArrow1(!arrow1);
+      }
+      if (arrow3) {
+        setArrow3(!arrow3);
+      }
+    }
+  };
+
+  const arrowTriertHandler = (e) => {
+    setArrow3(!arrow3);
+    if (arrow1 || arrow2) {
+      setArrow1(!arrow1);
+      if (arrow1) {
+        setArrow1(!arrow1);
+      }
+      if (arrow2) {
+        setArrow2(!arrow2);
+      }
+    }
   };
 
   return (
     <>
-      <section className="sectionAvis">
-        <div className="avis">
-          <div className=" avis__left ">
-            <div className="avis__left--up">
-              <div className="avisHeader">
-                <div className="avisHeader__GD">
-                  <p>GD</p>
-                </div>
-                <div className="avisHeader__name">
-                  <h3>GAUTIER DECROIX</h3>
-                  <p className="avisHeader__name--title"> Manager</p>
-                </div>
+      <section className="avis-section">
+        <div className="avis-section__left">
+          <div className="avis-section__left--up">
+            <div className="manager">
+              <div className="manager__GD">
+                <p>GD</p>
               </div>
-
-              <div className="avis__centre">
-                <h4 className="avis__centre--avis">AVIS</h4>
-                <Link to="/sondage" className="avis__centre--sondage">
-                  SONDAGE
-                </Link>
-              </div>
-            </div>
-
-            <div className="avis__left--down">
-              <div>
-                <div className="dropDown">
-                  <div className="dropDown__select">
-                    <p>Select</p>
-                  </div>
-                  <span
-                    className={arrow ? "custom-arrowB" : "custom-arrowA"}
-                    onClick={arrowHandler}
-                  ></span>
-                </div>
-                <ul className={arrow ? ["dropDown__list"] : "hide"}>
-                  <li className="dropDown__list--option">Salim</li>
-                  <li className="dropDown__list--option">Hassan</li>
-                  <li className="dropDown__list--option">Adam</li>
-                </ul>
-              </div>
-              {/*  <div className="surpermarket">
-                <div className="surpermarket__icon">
-                  <BsShopWindow className="icon" />
-                </div>
-                <div className="surpermarket__input">
-                  <label for="market"></label>
-                  <select
-                    name="market"
-                    id="market"
-                    className="select select-left"
-                  >
-                    <option value="auchan">Auchan</option>
-                    <option value="lidl">Lidl</option>
-                  </select>
-                </div>
-              </div> */}
-              <div className="grocery">
-                <div className="grocery__icon">
-                  <BsShop className="icon" />
-                </div>
-                <div className="grocery__input">
-                  <label for="grocery"></label>
-                  <select
-                    name="grocery"
-                    id="grocery"
-                    className="select  select-left"
-                  >
-                    <option value="match">Match</option>
-                    <option value="carrefour">Carrefour</option>
-                  </select>
-                </div>
-              </div>
-              <div className="btn connexion">
-                <p>DECONNEXION</p>
+              <div className="manager__name">
+                <h3 className="manager__name--name">GAUTIER DECROIX</h3>
+                <p className="manager__title noActive"> Manager</p>
               </div>
             </div>
           </div>
-          {/*  */}
-          <div className="avis__right">
-            <div>
-              <div>
-                <h2 className="avis__right--header">Avis</h2>
-                <p className="avis__right--title">SUIVIS DES AVIS</p>
-              </div>
-              <hr />
-            </div>
+          <div className="avis-section__left--center link">
+            <p className="activeA sbm">AVIS</p>
+            <Link to="/sondage" className="noActive link">
+              SONDAGE
+            </Link>
+          </div>
+          <div className="avis-section__left--down">
+            <div className="leftDown">
+              <div className="leftDown__magasin">
+                <div className="leftDown__magasin--icon">
+                  <BsShop className="icon" />
+                </div>
 
-            <div className="avis-container">
-              <div className="avis-container--date">
-                <div className="subdate">
-                  <div className="subdate__droplist">
-                    <div className="subdate__droplist--title">Trier par </div>
-                    <div className="subdate__droplist--list">
-                      <label for="type"></label>
-                      <select name="type" id="type" className="select-right ">
-                        <option value="rayon">Rayon</option>
-                        <option value="lidl">Lidl</option>
-                      </select>
+                <div className="drop">
+                  <div className="drop__select">
+                    <div className="">
+                      <p>Traiteur</p>
                     </div>
+                    <span className="small-border"></span>
+                    <span
+                      className={arrow1 ? "custom-arrow2" : "custom-arrow"}
+                      onClick={arrowMagasinHandler}
+                    ></span>
                   </div>
-                  <div className="subdate__date">
-                    <input
-                      type="date"
-                      id="start"
-                      name=""
-                      value="2018-07-22"
-                      className="subdate__date--input"
-                    />
-                    <p className="subdate__date--seperator">AU</p>
-                    <input
-                      type="date"
-                      id="end"
-                      name=""
-                      value="2018-07-22"
-                      className="subdate__date--input"
-                    />
-                  </div>
+                  <ul className={arrow1 ? ["drop__list"] : "hide"}>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                  </ul>
                 </div>
               </div>
+
+              <div className="leftDown__magasin">
+                <div className="leftDown__magasin--icon">
+                  <BsShop className="icon" />
+                </div>
+
+                <div className="drop">
+                  <div className="drop__select">
+                    <div className="">
+                      <p>Atlantis</p>
+                    </div>
+                    <span
+                      className={arrow2 ? "custom-arrow2" : "custom-arrow"}
+                      onClick={arrowMarketHandler}
+                    ></span>
+                  </div>
+                  <ul className={arrow2 ? ["drop__list"] : "hide"}>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                    <li className="drop__list--option">Magasin</li>
+                    <li className="drop__list--option">Market</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="connecexion">
+              <button type="submit" className="btn connecexion__btn">
+                CONNEXION
+              </button>
+            </div>
+          </div>
+          {/* Right Side */}
+        </div>
+        <div className="avis-section__right">
+          <div>
+            <div>
+              <h2 className="avis__right--header">Avis</h2>
+              <p className="avis__right--title">SUIVIS DES AVIS</p>
+            </div>
+            <hr />
+          </div>
+
+          <div className="avis-container">
+            <div className="avis-container--date">
+              <div className="subdate">
+                <div className="subdate__droplist">
+                  <div className="subdate__droplist--title">Trier par </div>
+
+                  <div className="drop">
+                    <div className="drop__select">
+                      <div className="">
+                        <p>RAYON</p>
+                      </div>
+                      <span className="small-border"></span>
+                      <span
+                        className={arrow3 ? "custom-arrow2" : "custom-arrow"}
+                        onClick={arrowTriertHandler}
+                      ></span>
+                    </div>
+                    <ul className={arrow3 ? ["drop__list"] : "hide"}>
+                      <li className="drop__list--option">Magasin</li>
+                      <li className="drop__list--option">Market</li>
+                      <li className="drop__list--option">Magasin</li>
+                      <li className="drop__list--option">Market</li>
+                      <li className="drop__list--option">Magasin</li>
+                      <li className="drop__list--option">Market</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="subdate__date">
+                  <input
+                    type="date"
+                    id="start"
+                    name=""
+                    value="2018-07-22"
+                    className="subdate__date--input"
+                  />
+                  <p className="subdate__date--seperator">AU</p>
+                  <input
+                    type="date"
+                    id="end"
+                    name=""
+                    value="2018-07-22"
+                    className="subdate__date--input"
+                  />
+                </div>
+              </div>
+            </div>
+            {/*  */}
+            <div className="overFlowScroll">
               <div className="avis-container--statistics">
                 <div className="box statistic__1">
                   <div className="box__chiffre">1214</div>
@@ -171,7 +226,7 @@ function SuiviAvis() {
                   </div>
                 </div>
               </div>
-
+              {/*  */}
               <div className="avis-container--avislist">
                 <div className="list-avis">
                   <div className="list-avis__user">
