@@ -2,7 +2,6 @@ import React from "react";
 import { ReactComponent as Up } from "../img/icons/thumbs-up.svg";
 import { ReactComponent as Down } from "../img/icons/thumbs-down.svg";
 import { ReactComponent as Star } from "../img/icons/star.svg";
-
 import { AiFillLike } from "react-icons/ai";
 
 function AvisClient() {
