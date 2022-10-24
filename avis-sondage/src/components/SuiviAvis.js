@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import { BsShop, BsShopWindow, BsTelephone } from "react-icons/bs";
 import imge from "../img/user.jpeg";
 import AvisClient from "./AvisClient";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  calculateComments,
+  calculatAvgRatting,
+} from "../features/ratting/reviewSlice";
 import AvisItem from "./AvisItem";
 
 function SuiviAvis() {
@@ -11,7 +15,10 @@ function SuiviAvis() {
   const [arrow2, setArrow2] = useState(false);
   const [arrow3, setArrow3] = useState(false);
 
-  const { reviewItems } = useSelector((store) => store.reviews);
+  const { reviewItems, totalComments, avgRatting } = useSelector(
+    (store) => store.reviews
+  );
+  const dispatch = useDispatch();
 
   const arrowMagasinHandler = (e) => {
     setArrow1(!arrow1);
@@ -48,6 +55,11 @@ function SuiviAvis() {
       }
     }
   };
+
+  useEffect(() => {
+    dispatch(calculateComments());
+    dispatch(calculatAvgRatting());
+  }, [dispatch, reviewItems]);
 
   return (
     <>
@@ -193,7 +205,7 @@ function SuiviAvis() {
             <div className="overFlowScroll">
               <div className="avis-container--statistics">
                 <div className="box statistic__1">
-                  <div className="box__chiffre">1214</div>
+                  <div className="box__chiffre">{totalComments}</div>
                   <p className="box__text box__text--1 box__text">
                     commentaires
                   </p>
@@ -203,7 +215,7 @@ function SuiviAvis() {
                   </div>
                 </div>
                 <div className="box statistic__2">
-                  <div className="box__chiffre">1212</div>
+                  <div className="box__chiffre">{reviewItems.length}</div>
                   <p className="box__text box__text--2 box__text">notes</p>
 
                   <div className="box__tage">
@@ -211,7 +223,7 @@ function SuiviAvis() {
                   </div>
                 </div>
                 <div className="box statistic__3">
-                  <div className="box__chiffre">4,5/5 </div>
+                  <div className="box__chiffre">{avgRatting}/5 </div>
                   <p className="box__text box__text--3 box__text">en moyenne</p>
 
                   <div className="box__tage">
