@@ -137,7 +137,9 @@ const Sondage = () => {
 
             <div className="right__date--ajouter">
               <CiCirclePlus className="ajouter__icon" />
-              <p className="ajouter__text">AJOUTER</p>
+              <Link to="/create" className="ajouter__text">
+                AJOUTER
+              </Link>
             </div>
           </div>
           <div className="right__card">

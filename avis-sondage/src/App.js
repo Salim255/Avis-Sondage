@@ -6,6 +6,7 @@ import AvisClient from "./components/AvisClient";
 import RetourSondage from "./components/RetourSondage";
 import PopUp from "./components/PopUp";
 import AvisItem from "./components/AvisItem";
+import CreateSurvey from "./components/CreateSurvey";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="avis" element={<SuiviAvis />} />
           <Route path="sondage" element={<Sondage />} />
           <Route path="pop" element={<PopUp />} />
+          <Route path="create" element={<CreateSurvey />} />
         </Routes>
       </BrowserRouter>
 
