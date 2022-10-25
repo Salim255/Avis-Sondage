@@ -173,8 +173,7 @@ const Sondage = () => {
                     <div className="box__chiffre">75%</div>
 
                     <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
+                      <p> demandes de rappel</p>
                     </d>
 
                     <div className="box__tage">
@@ -185,8 +184,7 @@ const Sondage = () => {
                     <div className="box__chiffre">75%</div>
 
                     <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
+                      <p>demandes de rappel</p>
                     </d>
 
                     <div className="box__tage">
@@ -234,8 +232,7 @@ const Sondage = () => {
                     <div className="box__chiffre">75%</div>
 
                     <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
+                      <p> demandes de rappel</p>
                     </d>
 
                     <div className="box__tage">
@@ -254,8 +251,7 @@ const Sondage = () => {
                     <div className="box__chiffre">75%</div>
 
                     <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
+                      <p> demandes de rappel</p>
                     </d>
 
                     <div className="box__tage">
@@ -295,8 +291,7 @@ const Sondage = () => {
                     <div className="box__chiffre">75%</div>
 
                     <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
+                      <p> demandes de rappel</p>
                     </d>
 
                     <div className="box__tage">
@@ -307,8 +302,7 @@ const Sondage = () => {
                     <div className="box__chiffre">75%</div>
 
                     <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
+                      <p> demandes de rappel</p>
                     </d>
 
                     <div className="box__tage">
@@ -319,8 +313,7 @@ const Sondage = () => {
                     <div className="box__chiffre">75%</div>
 
                     <d className="box__text--4 box__text">
-                      <p> de demandes</p>
-                      <p>de rappel</p>
+                      <p> demandes de rappel</p>
                     </d>
 
                     <div className="box__tage">

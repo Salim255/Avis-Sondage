@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import reviewReducer from "./features/ratting/reviewSlice";
-console.log("====================================");
-console.log(reviewReducer);
-console.log("====================================");
+import surveyReducer from "./features/survey/surveySlice";
+
 export const store = configureStore({
   reducer: {
     reviews: reviewReducer,
+    survey: surveyReducer,
   },
 });

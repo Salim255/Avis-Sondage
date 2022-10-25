@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ReactComponent as Up } from "../img/icons/thumbs-up.svg";
 import { ReactComponent as Down } from "../img/icons/thumbs-down.svg";
 import { ReactComponent as Star } from "../img/icons/star.svg";
 import { AiFillLike } from "react-icons/ai";
 
-function AvisClient() {
+function AvisClient({ review, ratting, last_name, first_name }) {
+  console.log(first_name);
+  useEffect(() => {}, [review, ratting, last_name, first_name]);
   return (
     <>
-      <section className="ratting-section">
+      <section className="ratting-section" id="clientreview">
         <div className="ratting-container">
+          <a href="#avis-section" className="ratting-container__close">
+            &times;
+          </a>
           <div className="ratting-container__ratting">
             <div className="like">
               <p className="like__text">Aimez vous utiliser l'application ?</p>
@@ -49,23 +54,41 @@ function AvisClient() {
               <label className="form__group--label">
                 Apport quotidien Welleat :
               </label>
-              <textarea type="text" className="form__group--text" rows="3" />
+              <textarea
+                type="text"
+                className="form__group--text"
+                rows="2"
+                value={review}
+              />
             </div>
             <div className="form__group">
               <label className="form__group--label">
                 Remarque sur Welleat :
               </label>
-              <textarea type="text" className="form__group--text" rows="3" />
+              <textarea
+                type="text"
+                className="form__group--text"
+                rows="2"
+                value={review}
+              />
             </div>
             <div className="form__group">
               <label className="form__group--label">Idée pour Welleat :</label>
-              <textarea type="text" className="form__group--text" rows="3" />
+              <textarea
+                type="text"
+                className="form__group--text"
+                rows="2"
+                value={review}
+              />
             </div>
             <div className="form__group">
               <p>L'utilisateur souhaite être rappellé.</p>
               <div className="contact">
                 <div className="contact__info">
-                  <p>Salim Hassan</p>
+                  <p>
+                    {last_name}
+                    {first_name}
+                  </p>
                   <p>06.44.99.25.89</p>
                 </div>
                 <div className="contact__btn">

@@ -64,7 +64,7 @@ function SuiviAvis() {
 
   return (
     <>
-      <section className="avis-section">
+      <section className="avis-section" id="avis-section">
         <div className="avis-section__left">
           <div className="avis-section__left--up">
             <div className="manager">
@@ -235,8 +235,7 @@ function SuiviAvis() {
                   <div className="box__chiffre">{callPercentage}%</div>
 
                   <div className="box__text--4 box__text">
-                    <p> de demandes</p>
-                    <p>de rappel</p>
+                    <p> demandes de rappel</p>
                   </div>
 
                   <div className="box__tage">

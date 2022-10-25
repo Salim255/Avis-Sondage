@@ -274,45 +274,39 @@
   &__chiffre {
     position: absolute;
     top: 30%;
-    left: 24%;
+    left: 50%;
+    transform: translate(-50%, -30%);
     font-weight: 400;
     font-size: 5.6rem;
     color: #000;
   }
   &__text {
     position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -60%);
     text-align: center;
-    margin-top: 1.6rem;
+    //margin-top: 1.6rem;
     color: $color-black;
-    font-family: "Inter";
-    font-style: normal;
     font-weight: 400;
     font-size: 2rem;
     line-height: 4rem;
     &--1 {
-      top: 40%;
-      left: 23%;
     }
     &--2 {
-      top: 40%;
-      left: 41%;
     }
     &--3 {
-      top: 40%;
-      left: 28%;
     }
     &--4 {
-      top: 40%;
-      left: 20%;
-      line-height: 1.5;
+      line-height: 1.2;
     }
   }
 
   &__tage {
     position: absolute;
     top: 85%;
-    left: 25%;
-    transform: translate(10%, 10%);
+    left: 50%;
+    transform: translate(-50%, -10%);
     color: $color-grey-dark-1;
     text-align: center;
 
@@ -421,6 +415,18 @@
     padding: 8px 16px;
     border-radius: 4px;
     color: $color-grey-dark-3;
+    transition: all 0.2s ease;
+
+    &:link,
+    &:visited {
+      //color: rgba($color-black, $alpha: 0.5);
+      text-decoration: none;
+      //font-size: 3rem;
+      transition: all 0.2s ease;
+      &:hover {
+        @include btn-animation;
+      }
+    }
   }
 }
 
