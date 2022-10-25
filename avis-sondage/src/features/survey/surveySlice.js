@@ -19,13 +19,11 @@ const surveySlice = createSlice({
       state[name] = value;
     },
 
-    clearValue: () => {
-      return {
-        ...initialState,
-      };
+    clearValues: () => {
+      return initialState;
     },
   },
 });
 
-export const { handleChange, clearValue } = surveySlice.actions;
+export const { handleChange, clearValues } = surveySlice.actions;
 export default surveySlice.reducer;

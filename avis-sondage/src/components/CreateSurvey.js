@@ -2,11 +2,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import FormRow from "./FormRow";
-import { handleChange, clearValue } from "../features/survey/surveySlice";
+import { handleChange, clearValues } from "../features/survey/surveySlice";
 
 export default function CreateSurvey() {
   const dispatch = useDispatch();
-  const { isLoading, isEditing, editServey, position } = useSelector(
+  const { isLoading, isEditing, editSurvey, position } = useSelector(
     (store) => store.survey
   );
   const handleSubmit = (e) => {
@@ -53,7 +53,7 @@ export default function CreateSurvey() {
             <button
               type="button"
               className="btn btn-blak cealr-btn"
-              onClick={() => console.log("Hello World")}
+              onClick={() => dispatch(clearValues())}
             >
               clear
             </button>
