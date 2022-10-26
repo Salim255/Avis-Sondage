@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { loginUser } from "../features/user/loginSlice";
 const initialState = {
@@ -11,6 +12,7 @@ export default function Login() {
   const [values, setValues] = useState(initialState);
   const { user, isLoading } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -29,6 +31,14 @@ export default function Login() {
     dispatch(loginUser({ login, password }));
     return;
   };
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate("/sondage");
+      }, 2000);
+    }
+  }, [user]);
 
   return (
     <>
@@ -54,7 +64,7 @@ export default function Login() {
             />
           </div>
           <button type="submit" className="btn btn-block">
-            submit
+            {isLoading ? "loading..." : "submit"}
           </button>
         </form>
         ;
