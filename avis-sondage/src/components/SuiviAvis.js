@@ -1,25 +1,48 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BsShop, BsShopWindow, BsTelephone } from "react-icons/bs";
+import { DatePicker } from "antd";
+import { Calendar } from "react-date-range";
+import format from "date-fns/format";
 import imge from "../img/user.jpeg";
 import AvisClient from "./AvisClient";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  calculateComments,
-  calculatAvgRatting,
-  calculateCallPercentage,
-} from "../features/ratting/reviewSlice";
+import { getAllReviews } from "../features/review/reviewSlice";
+import { getStaticsByDate } from "../features/statics/staticsSlice";
+import "antd/dist/antd.css";
 import AvisItem from "./AvisItem";
+import moment from "moment";
+const { RangePicker } = DatePicker;
 
 function SuiviAvis() {
   const [arrow1, setArrow1] = useState(false);
   const [arrow2, setArrow2] = useState(false);
   const [arrow3, setArrow3] = useState(false);
+  /*   const [startDate, setStartDate] = useState("2018-07-22");
+  const [endtDate, setEndtDate] = useState("2018-07-22"); */
+  const [startDate, setStartDate] = useState("26/09/2022");
+  const [dates1, setDate1] = useState();
+  const [dates2, setDate2] = useState();
+  console.log(dates1, dates2);
+  const { reviewItems, avgRatting, callPercentage } = useSelector(
+    (store) => store.reviews
+  );
+  const { isLoading, staticsItems } = useSelector((store) => store.statics);
 
-  const { reviewItems, totalComments, avgRatting, callPercentage } =
-    useSelector((store) => store.reviews);
   const dispatch = useDispatch();
+  let noteAverage;
+  if (staticsItems.noteAverage) {
+    noteAverage = staticsItems.noteAverage;
+    noteAverage.toFixed(0);
+    //console.log(noteAverage);
+  }
 
+  const handleDateInput = (e) => {};
+  const handelSelect = (date) => {
+    console.log(date);
+  };
+
+  const onChange = () => {};
   const arrowMagasinHandler = (e) => {
     setArrow1(!arrow1);
     if (arrow2 || arrow3) {
@@ -57,10 +80,19 @@ function SuiviAvis() {
   };
 
   useEffect(() => {
-    dispatch(calculateComments());
-    dispatch(calculatAvgRatting());
-    dispatch(calculateCallPercentage());
-  }, [dispatch, reviewItems]);
+    dispatch(getAllReviews());
+    dispatch(getStaticsByDate());
+  }, []);
+
+  useEffect(() => {
+    if (dates2 && dates1) {
+      console.log("====================================");
+      console.log(dates2, dates1, "before");
+      console.log("====================================");
+      dispatch(getStaticsByDate({ dates1, dates2 }));
+      console.log(dates2, dates1, "aftre");
+    }
+  }, [dates1, dates2]);
 
   return (
     <>
@@ -184,20 +216,20 @@ function SuiviAvis() {
                   </div>
                 </div>
                 <div className="subdate__date">
-                  <input
-                    type="date"
-                    id="start"
-                    name=""
-                    value="2018-07-22"
-                    className="subdate__date--input"
+                  <DatePicker
+                    className="subdate__date--input calendarElement"
+                    onChange={(date) => {
+                      const value1 = moment(date).format("YYYY-MM-DD");
+
+                      setDate1(value1);
+                    }}
                   />
                   <p className="subdate__date--seperator">AU</p>
-                  <input
-                    type="date"
-                    id="end"
-                    name=""
-                    value="2018-07-22"
-                    className="subdate__date--input"
+                  <DatePicker
+                    onChange={(date) => {
+                      const value2 = moment(date).format("YYYY-MM-DD");
+                      setDate2(value2);
+                    }}
                   />
                 </div>
               </div>
@@ -206,40 +238,50 @@ function SuiviAvis() {
             <div className="overFlowScroll">
               <div className="avis-container--statistics">
                 <div className="box statistic__1">
-                  <div className="box__chiffre">{totalComments}</div>
+                  <div className="box__chiffre">{staticsItems.comments}</div>
                   <p className="box__text box__text--1 box__text">
                     commentaires
                   </p>
 
                   <div className="box__tage">
-                    <p className="box__tage--1">-12%</p>
+                    <p className="box__tage--1">
+                      {staticsItems.commentsDifference}%
+                    </p>
                   </div>
                 </div>
                 <div className="box statistic__2">
-                  <div className="box__chiffre">{reviewItems.length}</div>
+                  <div className="box__chiffre">{staticsItems.notes}</div>
                   <p className="box__text box__text--2 box__text">notes</p>
 
                   <div className="box__tage">
-                    <p className="box__tage--2">-12%</p>
+                    <p className="box__tage--2">
+                      {staticsItems.notesDifference}%
+                    </p>
                   </div>
                 </div>
                 <div className="box statistic__3">
-                  <div className="box__chiffre">{avgRatting}/5 </div>
+                  <div className="box__chiffre">{noteAverage}/5 </div>
                   <p className="box__text box__text--3 box__text">en moyenne</p>
 
                   <div className="box__tage">
-                    <p className="box__tage--3">+22%</p>
+                    <p className="box__tage--3">
+                      {staticsItems.notesAverageDifference}%
+                    </p>
                   </div>
                 </div>
                 <div className="box statistic__4">
-                  <div className="box__chiffre">{callPercentage}%</div>
+                  <div className="box__chiffre">
+                    {staticsItems.callAverage}%
+                  </div>
 
                   <div className="box__text--4 box__text">
                     <p> demandes de rappel</p>
                   </div>
 
                   <div className="box__tage">
-                    <p className="box__tage--4">+22%</p>
+                    <p className="box__tage--4">
+                      +{staticsItems.callAverageDifference}%
+                    </p>
                   </div>
                 </div>
               </div>
