@@ -11,4 +11,11 @@ const userSlice = createSlice({
   initialState,
 });
 
+export const loginUser = createAsyncThunk(
+  "user/loginUser",
+  async (user, thunkAPI) => {
+    console.log(`Login User: ${JSON.stringify(user)}`);
+  }
+);
+
 export default userSlice.reducer;
