@@ -116,7 +116,7 @@
 ///
 ///
 .sondage-section {
-  height: 100vh;
+  height: 97vh;
   display: grid;
   grid-template-columns: /* max-content 1fr */ min-content 1fr;
 
@@ -196,12 +196,13 @@
 .manager {
   display: flex;
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   //font-size: 1.5rem;
   &__GD {
     display: inline-block;
     margin-right: 1.5rem;
-    padding: 1rem 1.6rem;
+    padding: 0rem 1.6rem;
+    padding-top: 1rem;
     border: 1px solid $color-black;
     border-radius: 5px;
     align-self: center;

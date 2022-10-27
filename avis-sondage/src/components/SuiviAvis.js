@@ -9,7 +9,7 @@ import AvisClient from "./AvisClient";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllReviews } from "../features/review/reviewSlice";
 import { getStaticsByDate } from "../features/statics/staticsSlice";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import AvisItem from "./AvisItem";
 import moment from "moment";
 const { RangePicker } = DatePicker;
@@ -18,31 +18,18 @@ function SuiviAvis() {
   const [arrow1, setArrow1] = useState(false);
   const [arrow2, setArrow2] = useState(false);
   const [arrow3, setArrow3] = useState(false);
-  /*   const [startDate, setStartDate] = useState("2018-07-22");
-  const [endtDate, setEndtDate] = useState("2018-07-22"); */
-  const [startDate, setStartDate] = useState("26/09/2022");
-  const [dates1, setDate1] = useState();
-  const [dates2, setDate2] = useState();
-  console.log(dates1, dates2);
+
+  const [dates1, setDate1] = useState("2022-10-11");
+  const [dates2, setDate2] = useState("2022-10-30");
+
+  const dispatch = useDispatch();
   const { reviewItems, avgRatting, callPercentage } = useSelector(
     (store) => store.reviews
   );
-  const { isLoading, staticsItems } = useSelector((store) => store.statics);
+  const { isLoading, staticsItems, opinionsList } = useSelector(
+    (store) => store.statics
+  );
 
-  const dispatch = useDispatch();
-  let noteAverage;
-  if (staticsItems.noteAverage) {
-    noteAverage = staticsItems.noteAverage;
-    noteAverage.toFixed(0);
-    //console.log(noteAverage);
-  }
-
-  const handleDateInput = (e) => {};
-  const handelSelect = (date) => {
-    console.log(date);
-  };
-
-  const onChange = () => {};
   const arrowMagasinHandler = (e) => {
     setArrow1(!arrow1);
     if (arrow2 || arrow3) {
@@ -80,11 +67,6 @@ function SuiviAvis() {
   };
 
   useEffect(() => {
-    dispatch(getAllReviews());
-    dispatch(getStaticsByDate());
-  }, []);
-
-  useEffect(() => {
     if (dates2 && dates1) {
       console.log("====================================");
       console.log(dates2, dates1, "before");
@@ -93,6 +75,20 @@ function SuiviAvis() {
       console.log(dates2, dates1, "aftre");
     }
   }, [dates1, dates2]);
+
+  useEffect(() => {
+    dispatch(getAllReviews());
+    dispatch(getStaticsByDate());
+  }, []);
+
+  if (isLoading) {
+    return <div>isLoading....</div>;
+  }
+
+  let noteAverage;
+  if (staticsItems.noteAverage) {
+    noteAverage = Math.round(staticsItems.noteAverage);
+  }
 
   return (
     <>
@@ -217,7 +213,7 @@ function SuiviAvis() {
                 </div>
                 <div className="subdate__date">
                   <DatePicker
-                    className="subdate__date--input calendarElement"
+                    className="subdate__date--input "
                     onChange={(date) => {
                       const value1 = moment(date).format("YYYY-MM-DD");
 
@@ -230,6 +226,7 @@ function SuiviAvis() {
                       const value2 = moment(date).format("YYYY-MM-DD");
                       setDate2(value2);
                     }}
+                    className="datePicker"
                   />
                 </div>
               </div>
@@ -260,18 +257,22 @@ function SuiviAvis() {
                   </div>
                 </div>
                 <div className="box statistic__3">
-                  <div className="box__chiffre">{noteAverage}/5 </div>
+                  <div className="box__chiffre">
+                    {noteAverage}
+                    <span className="small-chiffre">/5</span>
+                  </div>
                   <p className="box__text box__text--3 box__text">en moyenne</p>
 
                   <div className="box__tage">
                     <p className="box__tage--3">
-                      {staticsItems.notesAverageDifference}%
+                      {Math.round(staticsItems.notesAverageDifference, 1)}%
                     </p>
                   </div>
                 </div>
                 <div className="box statistic__4">
                   <div className="box__chiffre">
-                    {staticsItems.callAverage}%
+                    {staticsItems.callAverage}
+                    <span className="small-chiffre">%</span>
                   </div>
 
                   <div className="box__text--4 box__text">
@@ -287,9 +288,10 @@ function SuiviAvis() {
               </div>
               {/*  */}
               <div className="avis-container--avislist">
-                {reviewItems.map((item) => (
-                  <AvisItem key={item.id} {...item} />
-                ))}
+                {opinionsList &&
+                  opinionsList.map((item) => (
+                    <AvisItem key={item.OpinionId} {...item} />
+                  ))}
               </div>
             </div>
           </div>

@@ -3,25 +3,53 @@ import { ReactComponent as Up } from "../img/icons/thumbs-up.svg";
 import { ReactComponent as Down } from "../img/icons/thumbs-down.svg";
 import { ReactComponent as Star } from "../img/icons/star.svg";
 import { AiFillLike } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { getClientById } from "../features/review/reviewSlice";
+import { getUserByOpinionId } from "../features/userOpinionSlice";
+import { Link, useParams } from "react-router-dom";
+import { MdStar } from "react-icons/md";
+import { IoIosStarHalf } from "react-icons/io";
+import { AiOutlineStar } from "react-icons/ai";
 
-function AvisClient({ review, ratting, last_name, first_name }) {
-  console.log(first_name);
-  useEffect(() => {}, [review, ratting, last_name, first_name]);
+function AvisClient() {
+  let { userOpinionId } = useParams();
+
+  const dispatch = useDispatch();
+
+  const { isLoading, opinionsList } = useSelector((store) => store.statics);
+
+  let user;
+  if (opinionsList.length > 0) {
+    user = opinionsList.find((x) => x.OpinionId === 1 * userOpinionId);
+  }
+
+  if (isLoading) {
+    return <div>isLoading</div>;
+  }
+
   return (
     <>
       <section className="ratting-section" id="clientreview">
         <div className="ratting-container">
-          <a href="#avis-section" className="ratting-container__close">
+          <a href="/avis" className="ratting-container__close">
             &times;
           </a>
           <div className="ratting-container__ratting">
             <div className="like">
               <p className="like__text">Aimez vous utiliser l'application ?</p>
               <div className="like__icon ">
-                <Up fill="#8cec8c" width={30} height={30} />
+                <Up
+                  fill={user.satisfaction ? "#8cec8c" : "white"}
+                  width={30}
+                  height={30}
+                />
               </div>
               <div className="like__icon ">
-                <Down fill="#f4f4f4" width={30} height={30} />
+                <Down
+                  fill={!user.satisfaction ? "#8cec8c" : "white"}
+                  width={30}
+                  height={30}
+                />
               </div>
             </div>
             <div className="stars">
@@ -29,7 +57,7 @@ function AvisClient({ review, ratting, last_name, first_name }) {
 
               <div className="stars__stars">
                 <div>
-                  <span className="star-margin">
+                  {/*    <span className="star-margin">
                     <Star fill="#eb8b1e" />
                   </span>
                   <span className="star-margin">
@@ -43,7 +71,33 @@ function AvisClient({ review, ratting, last_name, first_name }) {
                   </span>
                   <span className="star-margin">
                     <Star fill="#eb8b1e" />
-                  </span>
+                  </span> */}
+                  {[...Array(5)].map((star, index) => {
+                    return (
+                      <>
+                        {user.note - index > 0 ? (
+                          <MdStar
+                            color={"#ffcc10"}
+                            key={index}
+                            className="starMargin "
+                          />
+                        ) : index ? (
+                          <MdStar
+                            color={"#FFFFFF"}
+                            key={index}
+                            className="starMargin "
+                          />
+                        ) : (
+                          <MdStar
+                            color={"#FFFFFF"}
+                            key={index}
+                            className="starMargin "
+                          />
+                        )}
+                      </>
+                      /*  <MdStar   color={"#ffcc10" } key={index} className='starMargin'/> index <= E ? (<MdStar   color={"#ffcc10" } key={index} className='starMargin'/>):*/
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -58,7 +112,7 @@ function AvisClient({ review, ratting, last_name, first_name }) {
                 type="text"
                 className="form__group--text"
                 rows="2"
-                value={review}
+                value={user.entity}
               />
             </div>
             <div className="form__group">
@@ -69,7 +123,7 @@ function AvisClient({ review, ratting, last_name, first_name }) {
                 type="text"
                 className="form__group--text"
                 rows="2"
-                value={review}
+                value={user.entity}
               />
             </div>
             <div className="form__group">
@@ -78,7 +132,7 @@ function AvisClient({ review, ratting, last_name, first_name }) {
                 type="text"
                 className="form__group--text"
                 rows="2"
-                value={review}
+                value={user.entity}
               />
             </div>
             <div className="form__group">
@@ -86,8 +140,8 @@ function AvisClient({ review, ratting, last_name, first_name }) {
               <div className="contact">
                 <div className="contact__info">
                   <p>
-                    {last_name}
-                    {first_name}
+                    {/*  {user.notice}
+                    {user.notice} */}
                   </p>
                   <p>06.44.99.25.89</p>
                 </div>

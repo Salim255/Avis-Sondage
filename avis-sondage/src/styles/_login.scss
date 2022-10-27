@@ -1,0 +1,14 @@
+.login {
+  background-image: linear-gradient(rgb(176, 153, 133), rgb(137, 126, 92));
+  height: 100vh;
+
+  &__container {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+  }
+}
+
+.small-chiffre {
+  font-size: 2.5rem;
+}

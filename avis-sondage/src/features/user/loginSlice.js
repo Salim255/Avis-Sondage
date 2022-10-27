@@ -40,7 +40,7 @@ const userSlice = createSlice({
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.isLoading = false;
-      toast.error("Invalid credentials");
+      toast.error("Invalid Credentials");
     },
   },
 });

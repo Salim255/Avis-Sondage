@@ -42,8 +42,8 @@ export default function Login() {
 
   return (
     <>
-      <div>
-        <form onSubmit={onSubmit}>
+      <div className="login">
+        <form onSubmit={onSubmit} className="login__container">
           <h3>Login</h3>
           <div>
             <label htmlFor="login">Email</label>

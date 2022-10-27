@@ -6,14 +6,9 @@ import imge from "../img/user.jpeg";
 import RetourSondage from "./RetourSondage";
 import PopUp from "./PopUp";
 
-import { useDispatch } from "react-redux";
-import { getAllOpinions } from "../features/survey/opinionSlice";
-//
-const Sondage = () => {
+const Shared = () => {
   const [arrow1, setArrow1] = useState(false);
   const [arrow2, setArrow2] = useState(false);
-  const dispatch = useDispatch();
-  ///
   const arrowMagasinHandler = (e) => {
     setArrow1(!arrow1);
     if (arrow2) {
@@ -26,8 +21,6 @@ const Sondage = () => {
       setArrow1(!arrow1);
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -340,4 +333,4 @@ const Sondage = () => {
   );
 };
 
-export default Sondage;
+export default Shared;

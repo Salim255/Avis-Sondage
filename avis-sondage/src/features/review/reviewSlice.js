@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const initialState = {
   reviewItems: [],
-
+  user: null,
   isLoading: true,
 };
 
@@ -31,6 +31,13 @@ const reviewSlice = createSlice({
   name: "reviews",
   initialState,
   reducers: {
+    getClientById: (state, id) => {
+      state.reviewItems.forEach((item) => {
+        if ((item.id = id)) {
+          state.user = item;
+        }
+      });
+    },
     /*   calculateComments: (state) => {
       let totalComments = 0;
       state.reviewItems.forEach((item) => {
@@ -87,6 +94,7 @@ export const {
   calculateComments,
   calculatAvgRatting,
   calculateCallPercentage,
+  getClientById,
 } = reviewSlice.actions;
 
 export default reviewSlice.reducer;

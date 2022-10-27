@@ -1,5 +1,7 @@
 import axios from "axios";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import customFetch from "../../components/axios";
+
 const initialState = {
   isLoading: false,
   surveyOptions: [],
@@ -8,6 +10,25 @@ const initialState = {
   isEditing: false,
   editSurvey: "",
 };
+
+export const creatSurvey = createAsyncThunk(
+  "survey/createSurvey",
+  async (survey, thunkAPI) => {
+    try {
+      const resp = await customFetch.post("/survey", survey, {
+        headers: {
+          authorization: `Bearer : ${thunkAPI.getState().user.user.token}`,
+        },
+      });
+      thunkAPI.dispatch(clearValues);
+      return resp.data;
+    } catch (error) {
+      if (error.response.status === 401) {
+        return error;
+      }
+    }
+  }
+);
 
 //Create the slice
 
