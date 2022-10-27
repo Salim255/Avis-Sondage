@@ -18,9 +18,14 @@ function AvisClient() {
 
   const { isLoading, opinionsList } = useSelector((store) => store.statics);
 
+  const { reviewItems, avgRatting, callPercentage } = useSelector(
+    (store) => store.reviews
+  );
+
   let user;
   if (opinionsList.length > 0) {
-    user = opinionsList.find((x) => x.OpinionId === 1 * userOpinionId);
+    user = reviewItems.find((x) => x.id === 1 * userOpinionId);
+    console.log(user, "From here1");
   }
 
   if (isLoading) {
@@ -112,7 +117,7 @@ function AvisClient() {
                 type="text"
                 className="form__group--text"
                 rows="2"
-                value={user.entity}
+                value={user.dailyUse}
               />
             </div>
             <div className="form__group">
@@ -123,7 +128,7 @@ function AvisClient() {
                 type="text"
                 className="form__group--text"
                 rows="2"
-                value={user.entity}
+                value={user.notice}
               />
             </div>
             <div className="form__group">
@@ -132,7 +137,7 @@ function AvisClient() {
                 type="text"
                 className="form__group--text"
                 rows="2"
-                value={user.entity}
+                value={user.ideas}
               />
             </div>
             <div className="form__group">

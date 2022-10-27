@@ -17,15 +17,14 @@ function AvisItem({
   notice,
   ideas,
   contact,
+  reviewItems,
 }) {
   const [itemId, setItemId] = useState("");
   const dispatch = useDispatch();
 
+  console.log(reviewItems, "From Aitem");
   const handleClick = (e) => {
     let item_id = e.target.dataset.id;
-    console.log("====================================");
-    console.log("Take it from here", item_id, "here");
-    console.log("====================================");
     setItemId(item_id);
     //dispatch(getClientById(item_id));
   };

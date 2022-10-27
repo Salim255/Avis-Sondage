@@ -27,9 +27,6 @@ const userOpinionSlice = createSlice({
       state.isLoading = false;
 
       state.user = payload;
-      console.log("====================================");
-      console.log(payload, "load load");
-      console.log("====================================");
     },
     [getUserByOpinionId.rejected]: (state, { payload }) => {
       state.isLoading = false;
