@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 
 const RunningSondage = ({ opinion }) => {
   //let endDate = opinion.endDate.slice(0, 10).split("-").join("/");
@@ -18,9 +19,9 @@ const RunningSondage = ({ opinion }) => {
           <div className="box__planning">
             <div className="box__planning--plng">UI du Planning</div>
             <div className="box__planning--detail">
-              <a href="#sondagePopUP" className="link">
+              <Link to={`/sondage/${opinion.id}`} className="link">
                 Details
-              </a>
+              </Link>
             </div>
             <div className="box__planning--modifier">Modifier</div>
           </div>

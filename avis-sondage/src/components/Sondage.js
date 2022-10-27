@@ -40,7 +40,7 @@ const Sondage = () => {
 
   return (
     <>
-      <section className="sondage-section" id="sondage-section">
+      <section className="sondage-section">
         <SondageAside
           arrowMarketHandler={arrowMarketHandler}
           arrowMagasinHandler={arrowMagasinHandler}
@@ -49,7 +49,6 @@ const Sondage = () => {
         />
         <SondageRight allOpinions={allOpinions} />
       </section>
-      <PopUp />
     </>
   );
 };

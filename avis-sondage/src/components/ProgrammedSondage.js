@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProgrammedSondage = () => {
   return (
@@ -16,9 +17,9 @@ const ProgrammedSondage = () => {
           <div className="box__planning">
             <div className="box__planning--plng">UI du Planning</div>
             <div className="box__planning--detail">
-              <a href="#sondagePopUP" className="link">
+              <Link to="/sondage" className="link">
                 Details
-              </a>
+              </Link>
             </div>
             <div className="box__planning--modifier">Modifier</div>
           </div>

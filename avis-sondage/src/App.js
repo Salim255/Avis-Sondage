@@ -22,7 +22,7 @@ function App() {
           <Route path="avis" element={<SuiviAvis />} />
           <Route path="avis/:userOpinionId" element={<AvisClient />} />
           <Route path="sondage" element={<Sondage />} />
-
+          <Route path="sondage/:onionId" element={<PopUp />} />
           <Route path="pop" element={<PopUp />} />
           {/* <Route path="create" element={<CreateSurvey />} /> */}
         </Routes>

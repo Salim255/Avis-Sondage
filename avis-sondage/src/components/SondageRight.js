@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import SondageCard from "./SondageCard";
 
 export default function SondageRight({ allOpinions }) {
-  console.log("====================================");
-  console.log(allOpinions, "From sondge right");
-  console.log("====================================");
   return (
     <div className="sondage-section__right right">
       <div className="right__header">
