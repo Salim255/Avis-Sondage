@@ -47,7 +47,7 @@ const Sondage = () => {
           arrow1={arrow1}
           arrow2={arrow2}
         />
-        <SondageRight />
+        <SondageRight allOpinions={allOpinions} />
       </section>
       <PopUp />
     </>
