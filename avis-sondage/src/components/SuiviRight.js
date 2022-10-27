@@ -16,11 +16,11 @@ const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
   const dispatch = useDispatch();
   const { opinionsList } = useSelector((store) => store.statics);
   const { reviewItems } = useSelector((store) => store.reviews);
-  const { magasinList } = useSelector((store) => store.magasin);
+  const { magasinList, rayonList } = useSelector((store) => store.magasin);
 
   const handleChange = (e) => {
     setSelected(e.target.textContent);
-    console.log(e.target.textContent);
+    arrow3 = false;
   };
   useEffect(() => {
     dispatch(getAllReviews());
@@ -48,7 +48,7 @@ const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
             <div className="subdate__droplist">
               <div className="subdate__droplist--title">Trier par </div>
 
-              <div className="drop">
+              <div className="drop droptrier">
                 <div className="drop__select">
                   <div className="">
                     <p>{seleceted}</p>
@@ -60,9 +60,31 @@ const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
                   ></span>
                 </div>
                 <ul className={arrow3 ? ["drop__list"] : "hide"}>
-                  <li className="drop__list--option" onClick={handleChange}>
-                    Magasin
-                  </li>
+                  {magasinList &&
+                    magasinList.map((magasin, index) => {
+                      return (
+                        <li
+                          key={index}
+                          className="drop__list--option"
+                          onClick={handleChange}
+                        >
+                          {magasin}
+                        </li>
+                      );
+                    })}
+
+                  {rayonList &&
+                    rayonList.map((magasin, index) => {
+                      return (
+                        <li
+                          key={index}
+                          className="drop__list--option"
+                          onClick={handleChange}
+                        >
+                          {magasin}
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </div>

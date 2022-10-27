@@ -249,38 +249,45 @@
 .drop {
   flex: 2;
 
-  text-align: center;
   width: 19rem;
   height: 4rem;
 
   &__select {
     background: $color-grey-light-2;
-    padding: 0.5rem;
+    padding: 0.5rem 2rem;
     position: relative;
     border-radius: 0.2rem;
     box-shadow: 0rem 0.5rem 1rem rgba($color: #000000, $alpha: 0.4);
   }
   &__list {
     height: 5rem;
+    text-align: center;
     overflow: auto scroll;
-    background: $color-grey-light-2;
+    background: $color-grey-light-1;
     position: absolute;
     width: 19rem;
+    height: 20rem;
     z-index: 1;
     border-radius: 4px;
     margin-top: 2px;
+    border: 1px solid $color-grey-dark-2;
     &--option {
       cursor: pointer;
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       overflow: hidden;
       padding: 0.5rem;
+      transition: all 0.2s ease;
 
       &:hover {
         background: $color-tertiary;
+        @include btn-animation;
       }
     }
   }
+}
+.droptrier {
+  height: 10rem;
 }
 
 .custom-arrow,
