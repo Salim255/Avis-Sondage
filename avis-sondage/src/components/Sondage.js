@@ -6,7 +6,7 @@ import imge from "../img/user.jpeg";
 import RetourSondage from "./RetourSondage";
 import PopUp from "./PopUp";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllOpinions } from "../features/survey/opinionSlice";
 //
 const Sondage = () => {
@@ -27,7 +27,9 @@ const Sondage = () => {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(getAllOpinions());
+  }, []);
 
   return (
     <>

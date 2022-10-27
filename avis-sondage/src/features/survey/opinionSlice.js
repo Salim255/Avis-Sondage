@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import customFetch from "../../components/axios";
 
 const initialState = {
@@ -11,14 +11,15 @@ export const getAllOpinions = createAsyncThunk(
   "opinion/allOpinions",
   async (_, thunkAPI) => {
     try {
-      const resp = await customFetch.post(
+      const resp = await customFetch.get(
         "/polls/getbyDate/2022-10-14/2022-10-30",
         {
           headers: {
-            authorization: `Bearer : ${thunkAPI.getState().user.user.token}`,
+            authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
           },
         }
       );
+
       //thunkAPI.dispatch(clearValues);
       return resp.data;
     } catch (error) {
