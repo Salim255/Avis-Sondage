@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { DatePicker } from "antd";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,12 +10,18 @@ const { RangePicker } = DatePicker;
 const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
   const [dates1, setDate1] = useState("2022-10-11");
   const [dates2, setDate2] = useState("2022-10-30");
+  const [seleceted, setSelected] = useState("RAYON");
+
+  const ref = useRef();
   const dispatch = useDispatch();
   const { opinionsList } = useSelector((store) => store.statics);
-  const { reviewItems, avgRatting, callPercentage } = useSelector(
-    (store) => store.reviews
-  );
+  const { reviewItems } = useSelector((store) => store.reviews);
+  const { magasinList } = useSelector((store) => store.magasin);
 
+  const handleChange = (e) => {
+    setSelected(e.target.textContent);
+    console.log(e.target.textContent);
+  };
   useEffect(() => {
     dispatch(getAllReviews());
     // dispatch(getStaticsByDate());
@@ -45,7 +51,7 @@ const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
               <div className="drop">
                 <div className="drop__select">
                   <div className="">
-                    <p>RAYON</p>
+                    <p>{seleceted}</p>
                   </div>
                   <span className="small-border"></span>
                   <span
@@ -54,7 +60,9 @@ const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
                   ></span>
                 </div>
                 <ul className={arrow3 ? ["drop__list"] : "hide"}>
-                  <li className="drop__list--option">Magasin</li>
+                  <li className="drop__list--option" onClick={handleChange}>
+                    Magasin
+                  </li>
                 </ul>
               </div>
             </div>

@@ -5,6 +5,7 @@ import userSlice from "./features/user/loginSlice";
 import staticsReducer from "./features/statics/staticsSlice";
 import userOpinionReducer from "./features/userOpinionSlice";
 import opininoReducer from "./features/survey/opinionSlice";
+import magasinListReducer from "./features/ListMagasin/magasinSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     statics: staticsReducer,
     userOpinion: userOpinionReducer,
     opinions: opininoReducer,
+    magasin: magasinListReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

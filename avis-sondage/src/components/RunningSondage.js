@@ -19,11 +19,13 @@ const RunningSondage = ({ opinion }) => {
           <div className="box__planning">
             <div className="box__planning--plng">UI du Planning</div>
             <div className="box__planning--detail">
-              <Link to={`/sondage/${opinion.id}`} className="link">
+              <Link to={`/sondage/get/${opinion.id}`} className="link">
                 Details
               </Link>
             </div>
-            <div className="box__planning--modifier">Modifier</div>
+            <div className="box__planning--modifier">
+              <Link to={`/sondage/modify/${opinion.id}`}>Modifier</Link>
+            </div>
           </div>
 
           <div className="box__tage">

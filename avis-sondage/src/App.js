@@ -1,4 +1,5 @@
 import "./App.scss";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SuiviAvis from "./components/SuiviAvis";
 import Sondage from "./components/Sondage";
@@ -12,8 +13,17 @@ import "react-toastify/dist/ReactToastify.css";
 import Login from "./components/Login";
 import { Shared } from "react-redux";
 import { getAllReviews } from "./features/review/reviewSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllMagasinNames } from "./features/ListMagasin/magasinSlice";
+
+import CreateOpinion from "./components/CreateOpinion";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllMagasinNames());
+  }, []);
   return (
     <>
       <BrowserRouter>
@@ -22,7 +32,11 @@ function App() {
           <Route path="avis" element={<SuiviAvis />} />
           <Route path="avis/:userOpinionId" element={<AvisClient />} />
           <Route path="sondage" element={<Sondage />} />
-          <Route path="sondage/:onionId" element={<PopUp />} />
+          <Route path="sondage/get/:onionId" element={<PopUp />} />
+          <Route
+            path="sondage/modify/:createOpinionId"
+            element={<CreateOpinion />}
+          />
           <Route path="pop" element={<PopUp />} />
           {/* <Route path="create" element={<CreateSurvey />} /> */}
         </Routes>
