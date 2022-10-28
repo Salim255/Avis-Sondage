@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import customFetch from "../../components/axios";
+import { toast } from "react-toastify";
 
 const initialState = {
   isLoading: false,
@@ -9,21 +10,28 @@ const initialState = {
   editSurvey: "",
 };
 
-export const creatSurvey = createAsyncThunk(
+export const createSurvey = createAsyncThunk(
   "survey/createSurvey",
+
   async (survey, thunkAPI) => {
     try {
+      const token = thunkAPI.getState().user.user.token;
       const resp = await customFetch.post("polls/create", survey, {
         headers: {
-          authorization: `Bearer : ${thunkAPI.getState().user.user.token}`,
+          authorization: `Bearer ${token}`,
         },
       });
+
       //thunkAPI.dispatch(clearValues);
+      console.log("====================================");
+      console.log(resp, "RRRRR");
+      console.log("====================================");
       return resp.data;
     } catch (error) {
-      if (error.response.status === 401) {
-        return error;
+      if (error.response.status === 409) {
+        return thunkAPI.rejectWithValue(error.response.data);
       }
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
@@ -35,17 +43,22 @@ const surveySlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [creatSurvey.pending]: (state) => {
+    [createSurvey.pending]: (state) => {
       state.isLoading = true;
     },
-    [creatSurvey.fulfilled]: (state, { payload }) => {
+    [createSurvey.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.createdSurvey = payload;
+      toast.success("You Have Seccessful Created You New Survey");
+    },
+    [createSurvey.rejected]: (state, { payload }) => {
       state.isLoading = false;
 
-      state.createdSurvey = payload;
-    },
-    [creatSurvey.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      //toast.error(payload);
+      if (payload.error === "poll already exists") {
+        toast.error("Contexte du Sondage  déjà existe");
+      } else {
+        toast.error(payload.error);
+      }
     },
   },
 });
