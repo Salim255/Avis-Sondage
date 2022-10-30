@@ -2,12 +2,18 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import customFetch from "../../components/axios";
 import { toast } from "react-toastify";
+import { addSondageIdToLocalStorage } from "../../components/localStorage";
+import { getAllReviews } from "../review/reviewSlice";
+import { getAllOpinions } from "./opinionSlice";
 
 const initialState = {
+  id: null,
   isLoading: false,
   createdSurvey: [],
+  status: "pending",
+  surveyOptions: "",
   isEditing: false,
-  editSurvey: "",
+  editSurveyId: "",
 };
 
 export const createSurvey = createAsyncThunk(
@@ -23,9 +29,6 @@ export const createSurvey = createAsyncThunk(
       });
 
       //thunkAPI.dispatch(clearValues);
-      console.log("====================================");
-      console.log(resp, "RRRRR");
-      console.log("====================================");
       return resp.data;
     } catch (error) {
       if (error.response.status === 409) {
@@ -36,20 +39,52 @@ export const createSurvey = createAsyncThunk(
   }
 );
 
+export const deleteSurvey = createAsyncThunk(
+  "survey/deleteSurvey",
+  async (surveyId, thunkAPI) => {
+    thunkAPI.dispatch(showLoading());
+    try {
+      const token = thunkAPI.getState().user.user.token;
+      const resp = await customFetch.delete(`/polls/${surveyId}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      //To get the latest opinions, without deleted one
+      thunkAPI.dispatch(getAllOpinions());
+      return resp.data;
+    } catch (error) {
+      thunkAPI.dispatch(hideLoading());
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 //Create the slice
 
 const surveySlice = createSlice({
   name: "createdSurvey",
   initialState,
-  reducers: {},
+  reducers: {
+    handleChange: (state, { payload: { name, value } }) => {
+      state[name] = value;
+    },
+    showLoading: (state) => {
+      state.isLoading = true;
+    },
+    hideLoading: (state) => {
+      state.isLoading = false;
+    },
+  },
   extraReducers: {
     [createSurvey.pending]: (state) => {
       state.isLoading = true;
     },
     [createSurvey.fulfilled]: (state, { payload }) => {
-      state.isLoading = false;
       state.createdSurvey = payload;
-      toast.success("You Have Seccessful Created You New Survey");
+      addSondageIdToLocalStorage(state.createdSurvey.id);
+      state.isLoading = false;
+      toast.success("You Have Seccessfully Created You New Survey");
     },
     [createSurvey.rejected]: (state, { payload }) => {
       state.isLoading = false;
@@ -60,8 +95,14 @@ const surveySlice = createSlice({
         toast.error(payload.error);
       }
     },
+    [deleteSurvey.fulfilled]: (state, { payload }) => {
+      toast.success(payload.message);
+    },
+    [deleteSurvey.rejected]: (state, { payload }) => {
+      toast.error(payload);
+    },
   },
 });
 
-//export const { handleChange, clearValues } = surveySlice.actions;
+export const { handleChange, showLoading, hideLoading } = surveySlice.actions;
 export default surveySlice.reducer;
