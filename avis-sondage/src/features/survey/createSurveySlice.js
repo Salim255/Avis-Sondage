@@ -2,16 +2,22 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import customFetch from "../../components/axios";
 import { toast } from "react-toastify";
-import { addSondageIdToLocalStorage } from "../../components/localStorage";
+import {
+  addSondageIdToLocalStorage,
+  removecreatedSondageIdFromLocalStorage,
+} from "../../components/localStorage";
 import { getAllReviews } from "../review/reviewSlice";
 import { getAllOpinions } from "./opinionSlice";
 
 const initialState = {
-  id: null,
   isLoading: false,
   createdSurvey: [],
+  context: "",
+  title: "",
+  startDate: "",
+  endDate: "",
   status: "pending",
-  surveyOptions: "",
+  surveyOptions: [],
   isEditing: false,
   editSurveyId: "",
 };
@@ -28,7 +34,30 @@ export const createSurvey = createAsyncThunk(
         },
       });
 
-      //thunkAPI.dispatch(clearValues);
+      thunkAPI.dispatch(clearValues());
+      return resp.data;
+    } catch (error) {
+      if (error.response.status === 409) {
+        return thunkAPI.rejectWithValue(error.response.data);
+      }
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+export const createOption = createAsyncThunk(
+  "survey/createOption",
+
+  async (option, thunkAPI) => {
+    console.log(option);
+    try {
+      const token = thunkAPI.getState().user.user.token;
+      const resp = await customFetch.post("/choices/create", option, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(resp.data);
+      thunkAPI.dispatch(clearValues());
       return resp.data;
     } catch (error) {
       if (error.response.status === 409) {
@@ -60,6 +89,23 @@ export const deleteSurvey = createAsyncThunk(
   }
 );
 
+export const editSurvey = createAsyncThunk(
+  "survey/editSurvey",
+  async ({ surveyId, survey }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().user.user.token;
+      const resp = await customFetch.put(`/polls/${surveyId}`, survey, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      thunkAPI.dispatch(clearValues());
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 //Create the slice
 
 const surveySlice = createSlice({
@@ -74,6 +120,12 @@ const surveySlice = createSlice({
     },
     hideLoading: (state) => {
       state.isLoading = false;
+    },
+    setEditSurvey: (state, { payload }) => {
+      return { ...state, isEditing: true, ...payload };
+    },
+    clearValues: () => {
+      return initialState;
     },
   },
   extraReducers: {
@@ -101,8 +153,37 @@ const surveySlice = createSlice({
     [deleteSurvey.rejected]: (state, { payload }) => {
       toast.error(payload);
     },
+    [editSurvey.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [editSurvey.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.success("Survey Modified");
+    },
+    [editSurvey.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload.error);
+    },
+    [createOption.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [createOption.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      removecreatedSondageIdFromLocalStorage();
+      toast.success("Optioncreated");
+    },
+    [createOption.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload.error);
+    },
   },
 });
 
-export const { handleChange, showLoading, hideLoading } = surveySlice.actions;
+export const {
+  handleChange,
+  setEditSurvey,
+  showLoading,
+  hideLoading,
+  clearValues,
+} = surveySlice.actions;
 export default surveySlice.reducer;
