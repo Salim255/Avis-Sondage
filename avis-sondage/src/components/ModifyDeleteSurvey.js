@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import FormRow from "./FormRow";
 import { DatePicker } from "antd";
 import moment from "moment";
@@ -12,51 +12,45 @@ import {
   setEditSurvey,
 } from "../features/survey/createSurveySlice";
 
-const initialState = {
-  title: "",
-  context: "",
-};
-export default function CreateSurvey() {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [values, setValues] = useState(initialState);
+export const ModifyDeleteSurvey = ({
+  isLoading,
 
-  const {
-    id,
-    isLoading,
-    createdSurvey,
-    status,
-    surveyOptions,
-    isEditing,
-    editSurveId,
-  } = useSelector((store) => store.createdSurvey);
+  status,
+  isEditing,
+  editSurveId,
+}) => {
+  const { opinonId } = useParams();
+  const { allOpinions } = useSelector((store) => store.opinions);
+
+  const { context, title, startDate, endDate } = allOpinions.find(
+    (opionion) => opionion.id === 1 * opinonId
+  );
 
   const dispatch = useDispatch();
-  /*   const handleChange  */
-  const handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    // setValues({ ...values, [name]: value });
-    dispatch(handleChange({ name, value }));
-    // setValues({ ...values, [name]: value });
-  };
-
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, context } = values;
     if (!title || !context || !startDate || !endDate) {
       toast.error("Please Fill Out All Fields");
       return;
     }
-
     dispatch(createSurvey({ title, context, startDate, endDate }));
-    setValues(initialState);
   };
 
+  const handleSurveyInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log("====================================");
+    console.log(name, value);
+    console.log("====================================");
+    dispatch(handleChange({ name, value }));
+  };
+  useEffect(() => {
+    //dispatch(handleChange({}));
+  }, []);
   return (
     <section className="create-survey">
       <h1 className="create-survey__header">
-        {isEditing ? "Modifier Sondage" : "CRÉER SONDAGE"}
+        {isEditing ? "Modifier Sondage" : "CRÉER Salim SONDAGE"}
       </h1>
       <div className="create-survey__container">
         <div className="subdate__date form__date">
@@ -64,10 +58,11 @@ export default function CreateSurvey() {
             Commence
             <DatePicker
               className="subdate__date--input "
+              placeholder={startDate}
               onChange={(date) => {
                 const value = moment(date).format("YYYY-MM-DD");
-
-                setStartDate(value);
+                const name = "startDate";
+                dispatch(handleChange({ name, value }));
               }}
             />
           </div>
@@ -76,32 +71,34 @@ export default function CreateSurvey() {
           <div>
             Termine
             <DatePicker
+              placeholder={endDate}
               onChange={(date) => {
                 const value = moment(date).format("YYYY-MM-DD");
-                setEndDate(value);
+                const name = "endDate";
+                dispatch(handleChange({ name, value }));
               }}
               className="datePicker date"
             />
           </div>
         </div>
 
-        <form className="form " onSubmit={onSubmit}>
+        <form className="form ">
           <div className="form__center">
             <div>
               {/* Survey Title */}
               <FormRow
                 type="text"
                 name="title"
-                value={values.title}
-                handleChange={handleInput}
+                value={title}
+                handleChange={handleSurveyInput}
                 labelText="Titre Du sondage"
               />
               {/* Survey Context */}
               <FormRow
                 type="text"
                 name="context"
-                value={values.context}
-                handleChange={handleInput}
+                value={context}
+                handleChange={handleSurveyInput}
                 labelText="Contexte"
               />
               {isEditing ? "add option" : ""}
@@ -109,7 +106,12 @@ export default function CreateSurvey() {
 
             <div className="btn-container">
               <div>
-                <button type="submit" className="btn btn-blak submit-btn">
+                <button
+                  type="submit"
+                  className="btn btn-blak submit-btn"
+                  disabled={isLoading}
+                  onClick={handleSubmit}
+                >
                   submit
                 </button>
 
@@ -118,18 +120,11 @@ export default function CreateSurvey() {
                 </Link>
                 <Link
                   to="/sondage"
-                  className="btn btn-blak submit-btn"
-                  onClick={() => dispatch(setEditSurvey({ editSurveyId: id }))}
-                >
-                  Edit{" "}
-                </Link>
-                <button
-                  type="button"
                   className="btn"
-                  onClick={() => dispatch(deleteSurvey(6))}
+                  onClick={() => dispatch(deleteSurvey(opinonId))}
                 >
                   delete
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -137,4 +132,4 @@ export default function CreateSurvey() {
       </div>
     </section>
   );
-}
+};

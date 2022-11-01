@@ -1,9 +1,16 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import {
+  handleChange,
+  deleteSurvey,
+  setEditSurvey,
+} from "../features/survey/createSurveySlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const RunningSondage = ({ opinion }) => {
   //let endDate = opinion.endDate.slice(0, 10).split("-").join("/");
 
+  const dispatch = useDispatch();
   return (
     <div className="runningSurvey">
       <div className="runningSurvey__header">
@@ -17,14 +24,30 @@ const RunningSondage = ({ opinion }) => {
       <div className="runningSurvey__statistics">
         <div className="box ">
           <div className="box__planning">
-            <div className="box__planning--plng">UI du Planning</div>
+            <div className="box__planning--plng">{opinion.title}</div>
             <div className="box__planning--detail">
               <Link to={`/sondage/get/${opinion.id}`} className="link">
                 Details
               </Link>
             </div>
             <div className="box__planning--modifier">
-              <Link to={`/sondage/modify/${opinion.id}`}>Modifier</Link>
+              <Link
+                to={`/sondage/get/${opinion.id}`}
+                onClick={() => {
+                  dispatch(
+                    setEditSurvey({
+                      editSurveyId: opinion.id,
+                      title: opinion.title,
+                      context: opinion.context,
+                      startDate: opinion.startDate,
+                      endDate: opinion.endDate,
+                      surveyOptions: opinion.options,
+                    })
+                  );
+                }}
+              >
+                Modifier
+              </Link>
             </div>
           </div>
 

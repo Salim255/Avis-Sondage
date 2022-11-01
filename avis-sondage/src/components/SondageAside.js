@@ -8,6 +8,8 @@ export default function SondageAside({
   arrow1,
   arrow2,
 }) {
+  const createdId = localStorage.getItem("createdSurveyId");
+
   return (
     <div className="sondage-section__left">
       <div className="sondage-section__left--up">
@@ -26,6 +28,9 @@ export default function SondageAside({
           AVIS
         </Link>
         <p className="activeS">SONDAGE</p>
+        <Link to={`/sondage/questionAndOptions/${createdId}`}>
+          Complete your createdSondage
+        </Link>
       </div>
       <div className="sondage-section__left--down">
         <div className="leftDown">

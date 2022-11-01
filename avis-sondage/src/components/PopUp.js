@@ -48,9 +48,7 @@ function PopUp() {
             <div className=" sondage-body">
               <div className="sondage-body__contexte">
                 <p className="sondageTitleStyle">Contexte du sondage :</p>
-                <p className="sondagTxtStyle">
-                  C'etait super bon mais j'ai tout fini en deux bouchées
-                </p>
+                <p className="sondagTxtStyle">{opinion.context}</p>
               </div>
               {opinion.options.map((option) => (
                 <OptionItem key={option.id} option={option} />

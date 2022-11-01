@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import customFetch from "../../components/axios";
 
 const initialState = {
+  entitiesList: [],
   magasinList: [],
   rayonList: [],
   isLoading: true,
@@ -46,6 +47,7 @@ const magasinListSlice = createSlice({
           }
         });
       });
+      state.entitiesList = payload;
     },
     [getAllMagasinNames.rejected]: (state, { payload }) => {
       state.isLoading = false;

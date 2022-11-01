@@ -15,6 +15,8 @@ const initialState = {
   context: "",
   title: "",
   startDate: "",
+  option: "",
+  image: "",
   endDate: "",
   status: "pending",
   surveyOptions: [],
@@ -106,13 +108,41 @@ export const editSurvey = createAsyncThunk(
     }
   }
 );
+
+export const editOption = createAsyncThunk(
+  "survey/editeOption",
+
+  async ({ optionId, option }, thunkAPI) => {
+    console.log("From option", optionId, option);
+    try {
+      const token = thunkAPI.getState().user.user.token;
+      const resp = await customFetch.put(`/choices/${optionId}`, option, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      // console.log(thunkAPI.getState());
+      thunkAPI.dispatch(clearValues());
+      console.log(resp.data);
+      return resp.data;
+    } catch (error) {
+      if (error.response.status === 409) {
+        return thunkAPI.rejectWithValue(error.response.data);
+      }
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 //Create the slice
 
 const surveySlice = createSlice({
   name: "createdSurvey",
   initialState,
   reducers: {
-    handleChange: (state, { payload: { name, value } }) => {
+    handleChange: (state, { payload: { id, name, value } }) => {
+      state[name] = value;
+    },
+    handleOptionChange: (state, { payload: { id, name, value } }) => {
       state[name] = value;
     },
     showLoading: (state) => {
@@ -176,11 +206,23 @@ const surveySlice = createSlice({
       state.isLoading = false;
       toast.error(payload.error);
     },
+    [editOption.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [editOption.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.success("Option modified");
+    },
+    [editOption.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload.error);
+    },
   },
 });
 
 export const {
   handleChange,
+  handleOptionChange,
   setEditSurvey,
   showLoading,
   hideLoading,

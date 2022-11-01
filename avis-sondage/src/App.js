@@ -15,8 +15,12 @@ import { Shared } from "react-redux";
 import { getAllReviews } from "./features/review/reviewSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMagasinNames } from "./features/ListMagasin/magasinSlice";
-
+import ModifySurvey from "./components/ModifySurvey";
 import CreateOpinion from "./components/CreateOpinion";
+import CreateSondageQuestionsAndOptions from "./components/CreateSondageQuestionsAndOptions";
+import { AddSurvey } from "./components/AddSurvey";
+import { ModifyDeleteSurvey } from "./components/ModifyDeleteSurvey";
+import ModfiyOption from "./components/ModfiyOption";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,15 +36,21 @@ function App() {
           <Route path="avis" element={<SuiviAvis />} />
           <Route path="avis/:userOpinionId" element={<AvisClient />} />
           <Route path="sondage" element={<Sondage />} />
-          <Route path="sondage/get/:onionId" element={<PopUp />} />
+
+          <Route path="sondage/get/:opinonId" element={<AddSurvey />} />
+          <Route path="create" element={<AddSurvey />} />
+          <Route
+            path="sondage/questionAndOptions/:createOpinionId"
+            element={<CreateSondageQuestionsAndOptions />}
+          />
           <Route
             path="sondage/modify/:createOpinionId"
-            element={<CreateOpinion />}
+            element={<ModifySurvey />}
           />
           <Route path="pop" element={<PopUp />} />
           {/* <Route path="create" element={<CreateSurvey />} /> */}
         </Routes>
-        <ToastContainer />
+        <ToastContainer position="top-center" />
       </BrowserRouter>
 
       {/* <AvisItem /> */}
