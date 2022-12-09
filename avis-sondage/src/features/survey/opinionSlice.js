@@ -5,14 +5,17 @@ import customFetch from "../../components/axios";
 const initialState = {
   allOpinions: [],
   isLoading: true,
+  startDateFilter: "",
+  endDateFilter: "",
 };
 
 export const getAllOpinions = createAsyncThunk(
   "opinion/allOpinions",
-  async (_, thunkAPI) => {
+  async (date, thunkAPI) => {
     try {
+      /* `/polls/getbyDate/2022-10-14/2022-10-30", */
       const resp = await customFetch.get(
-        "/polls/getbyDate/2022-10-14/2022-10-30",
+        `/polls/getbyDate/${date.startDate}/${date.endDate}`,
         {
           headers: {
             authorization: `Bearer ${thunkAPI.getState().user.user.token}`,

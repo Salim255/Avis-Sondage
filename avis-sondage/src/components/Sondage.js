@@ -19,7 +19,9 @@ const Sondage = () => {
   const { isLoading, allOpinions } = useSelector((store) => store.opinions);
 
   useEffect(() => {
-    dispatch(getAllOpinions());
+    dispatch(
+      getAllOpinions({ startDate: "2021-10-14", endDate: "2023-11-01" })
+    );
   }, []);
 
   if (isLoading) {

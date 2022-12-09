@@ -6,6 +6,11 @@
 .activeA {
   border-bottom: 2px solid black;
   padding: 0.2rem 0rem;
+  padding: 0.2rem 0.5rem;
+  display: block;
+  width: 5rem;
+  align-items: center;
+  margin-left: 13rem;
 }
 
 .noActive {
@@ -13,14 +18,36 @@
 }
 
 .btn {
-  padding: 16px 16px;
-  background: $color-error;
+  padding: 1rem 1.6rem;
+
   display: inline-block;
-  color: $color-grey-light-2;
+  //color: $color-grey-light-2;
   border-radius: 2px;
   border: none;
+  margin-right: 2rem;
+  text-transform: capitalize;
+  font-size: 2rem;
+  transition: all 0.2s ease;
+  border-radius: 0.4rem;
+  &__submit {
+    background: $color-grey-light-3;
+    align-items: center;
+    justify-items: center;
+    align-self: center;
+    margin-top: 1.4rem;
+    &--modifier {
+      background: $color-secondary;
+    }
+  }
+  &__delete {
+    background: $color-secondary;
+  }
+  &__add {
+    background: $color-success;
+  }
   &:hover {
     @include btn-animation;
+    color: $color-primary;
   }
 }
 
@@ -29,4 +56,56 @@
 
 .sbm {
   margin-bottom: 1rem;
+}
+
+.modifyBtn {
+  margin-top: 1.5rem;
+  padding: 1rem 1rem;
+  display: inline-block;
+  background: $color-primary;
+  //color: $color-grey-dark-3;
+  text-transform: capitalize;
+  border-radius: 0.4rem;
+  border: none;
+  box-shadow: 0rem 0.5rem 1rem rgba($color: #000000, $alpha: 0.3);
+  transition: all 0.2s ease;
+  &:hover {
+    @include btn-animation;
+    //color: $color-secondary;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 0.7rem;
+  box-shadow: 0rem 0.3rem 0.5rem rgba($color: #b4b4b4, $alpha: 0.5);
+  transition: all 0.2s ease;
+  border: none;
+  border-radius: 0.4rem;
+  text-transform: capitalize;
+  &:hover {
+    @include btn-animation;
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.form__fileLadel {
+  color: $color-primary;
+  background-color: $color-grey-light-1;
+  padding: 1rem;
+  transition: all 0.2s;
+  border-bottom: 2px solid $color-primary;
+  border-radius: 0.4rem;
+  margin-right: 1rem;
+  &:hover {
+    padding: 1.1rem;
+    color: $color-grey-dark-2;
+  }
+  @include respond(tab-port) {
+  }
 }

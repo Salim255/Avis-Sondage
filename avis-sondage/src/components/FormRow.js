@@ -1,19 +1,16 @@
 const FormRow = ({ type, name, id, value, handleChange, labelText }) => {
-  console.log("====================================");
-  console.log(id, "DDDD");
-  console.log("====================================");
   return (
     <div className="form-row">
-      <label htmlFor={name} className="form-label">
+      <label htmlFor={name} className="form-row__label">
         {labelText}
       </label>
-      <input
+      <textarea
         type={type}
         name={name}
         value={value}
         id={id}
         onChange={handleChange}
-        className="form-input"
+        className="form-row__input"
       />
     </div>
   );

@@ -39,10 +39,10 @@ function App() {
 
           <Route path="sondage/get/:opinonId" element={<AddSurvey />} />
           <Route path="create" element={<AddSurvey />} />
-          <Route
+          {/*  <Route
             path="sondage/questionAndOptions/:createOpinionId"
             element={<CreateSondageQuestionsAndOptions />}
-          />
+          /> */}
           <Route
             path="sondage/modify/:createOpinionId"
             element={<ModifySurvey />}

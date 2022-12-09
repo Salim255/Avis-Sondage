@@ -4,33 +4,61 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import AvisItem from "./AvisItem";
 import { getAllReviews } from "../features/review/reviewSlice";
-
+import { getViewsByDateAndEntity } from "../features/statics/staticsSlice";
+import { getStaticsByDate } from "../features/statics/staticsSlice";
+import AvisAndStatics from "./AvisAndStatics";
 const { RangePicker } = DatePicker;
 
 const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
   const [dates1, setDate1] = useState("2022-10-11");
   const [dates2, setDate2] = useState("2022-10-30");
-  const [seleceted, setSelected] = useState("RAYON");
+  const [seleceted, setSelected] = useState("Rayon");
+  const [entityId, setEntityId] = useState("");
 
   const ref = useRef();
   const dispatch = useDispatch();
   const { opinionsList } = useSelector((store) => store.statics);
   const { reviewItems } = useSelector((store) => store.reviews);
-  const { magasinList, rayonList } = useSelector((store) => store.magasin);
+  const { magasinList, rayonList, entitiesList } = useSelector(
+    (store) => store.magasin
+  );
+
+  console.log(entitiesList);
+  const [startdate, setStartDate] = useState("hehe");
+  const [endDate, setEndDate] = useState("hhh");
 
   const handleChange = (e) => {
-    setSelected(e.target.textContent);
+    let he = e.target.textContent;
+    setSelected(he);
+    arrowTriertHandler();
+    if (magasinList.includes(he) || rayonList.includes(he)) {
+      if (magasinList.includes(he)) {
+        entitiesList.map((entity) => {
+          if (entity.name === he) {
+            setEntityId(entity.id);
+            dispatch(getStaticsByDate({ dates1, dates2, entity: entity.id }));
+            return;
+          }
+        });
+      } else {
+        entitiesList.map((entity) => {
+          entity.Services.map((service) => {
+            if (service.name === he) {
+              dispatch(getStaticsByDate({ dates1, dates2, entity: entity.id }));
+              return;
+            }
+          });
+        });
+      }
+    }
+
     arrow3 = false;
   };
-  useEffect(() => {
+  /*   useEffect(() => {
+    //dispatch(getViewsByDateAndEntity({ hello: "hello" }));
     dispatch(getAllReviews());
-    // dispatch(getStaticsByDate());
-  }, []);
-
-  let noteAverage;
-  if (staticsItems.noteAverage) {
-    noteAverage = Math.round(staticsItems.noteAverage);
-  }
+    //dispatch(getStaticsByDate());
+  }, []); */
 
   return (
     <div className="avis-section__right">
@@ -108,8 +136,12 @@ const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
             </div>
           </div>
         </div>
-        {/*  */}
-        <div className="overFlowScroll">
+        <AvisAndStatics
+          staticsItems={staticsItems}
+          opinionsList={opinionsList}
+          reviewItems={reviewItems}
+        />
+        {/*   <div className="overFlowScroll">
           <div className="avis-container--statistics">
             <div className="box statistic__1">
               <div className="box__chiffre">{staticsItems.comments}</div>
@@ -159,13 +191,12 @@ const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
               </div>
             </div>
           </div>
-          {/*  */}
+       
           <div className="avis-container--avislist">
             {opinionsList &&
               opinionsList.map((item) => {
                 return reviewItems.map((el) => {
                   if (item.OpinionId === el.id) {
-                    console.log(item.OpinionId === el.id, "Hello loya");
                     return (
                       <AvisItem
                         key={item.OpinionId}
@@ -177,7 +208,7 @@ const SuiviRight = ({ arrowTriertHandler, arrow3, staticsItems }) => {
                 });
               })}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

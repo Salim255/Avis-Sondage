@@ -1,20 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
 import FormRow from "./FormRow";
 import { DatePicker } from "antd";
 import moment from "moment";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { createSurvey, editSurvey } from "../features/survey/createSurveySlice";
+import { getAllOpinions } from "../features/survey/opinionSlice";
+import imge from "../img/user.jpeg";
 import {
   handleChange,
   handleOptionChange,
   deleteSurvey,
   setEditSurvey,
+  deleteOption,
+  toggleModalDetails,
 } from "../features/survey/createSurveySlice";
 import ModfiyOption from "./ModfiyOption";
+import CreateSondageQuestionsAndOptions from "./CreateSondageQuestionsAndOptions";
 
-export const AddSurvey = () => {
+export const AddSurvey = ({
+  setModall,
+  modall,
+  idd,
+  btnState,
+  setBtnState,
+  detailsbtn,
+  setDetailsbtn,
+}) => {
   const {
     isLoading,
     context,
@@ -27,15 +40,39 @@ export const AddSurvey = () => {
     isEditing,
     surveyOptions,
     editSurveyId,
+    createdSurvey,
   } = useSelector((store) => store.createdSurvey);
   const dispatch = useDispatch();
-
+  /* console.log(useParams(), "nini");
+  const { opinonId } = useParams(); */
+  const opinonId = idd;
   const [modal, setModal] = useState(false);
+  const [addOtionModal, setAddOptionModal] = useState(false);
+  const [modifierOption, setModifierOption] = useState(false);
+  //const refUse = useRef(null);
+  console.log("====================================");
+  console.log(createdSurvey);
+  console.log("====================================");
   const toggleModal = (id, option, image) => {
     dispatch(setEditSurvey({ id: id, option: option, image: "image" }));
     setModal(!modal);
+    //setModifierOption(!modifierOption);
   };
 
+  const toggleAddOptionModal = () => {
+    //dispatch(setEditSurvey({ id: id, option: option, image: "image" }));
+    setAddOptionModal(!addOtionModal);
+  };
+  console.log("====================================");
+  console.log("non", btnState, modall);
+  console.log("====================================");
+  const handleFermer = () => {
+    setModall(!modall);
+    setBtnState("");
+  };
+  console.log("====================================");
+  console.log("non", btnState, modall);
+  console.log("====================================");
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !context || !startDate || !endDate) {
@@ -50,10 +87,12 @@ export const AddSurvey = () => {
           survey: { title, context, startDate, endDate },
         })
       );
+      setModall(!modall);
       return;
     }
 
     dispatch(createSurvey({ title, context, startDate, endDate }));
+    dispatch(getAllOpinions());
   };
 
   const handleSurveyInput = (e) => {
@@ -63,125 +102,185 @@ export const AddSurvey = () => {
     dispatch(handleChange({ name, value }));
   };
   return (
-    <section className="create-survey">
-      <h1 className="create-survey__header">
-        {isEditing ? "Modifier Sondage" : "CRÉER SONDAGE"}
-      </h1>
-      <div className="create-survey__container">
-        <div className="subdate__date form__date">
-          <div>
-            Commence
-            <DatePicker
-              className="subdate__date--input "
-              onChange={(date) => {
-                const value = moment(date).format("YYYY-MM-DD");
-                const name = "startDate";
-                dispatch(handleChange({ name, value }));
-              }}
-            />
+    <>
+      <section className="overlay ">
+        <div className="create-survey ">
+          <div className="create-survey__header">
+            <h1 className="create-survey__header--title">
+              {btnState === "Details"
+                ? "Details"
+                : isEditing
+                ? "Modifier Sondage"
+                : "CRÉER SONDAGE"}
+            </h1>
+            <p
+              onClick={() => setModall(!modall)}
+              className="create-survey__header--close"
+            >
+              x
+            </p>
           </div>
+          <div className="scroll-sondage ">
+            <div className="retour-sondage">
+              <form className="form  retour-sondage__center">
+                <div className="form__center">
+                  <div>
+                    {/* Survey Title */}
+                    <FormRow
+                      type="text"
+                      name="title"
+                      value={title}
+                      handleChange={handleSurveyInput}
+                      labelText="Titre Du sondage"
+                    />
+                    <div className="  retour-sondage__up">
+                      <h4 className="retour-sondage__up--header">
+                        Data du Sondage
+                      </h4>
+                      <div className="retour-sondage__up--date">
+                        <div>
+                          Debut Du Sondage
+                          <DatePicker
+                            className="subdate__date--input "
+                            onChange={(date) => {
+                              const value = moment(date).format("YYYY-MM-DD");
+                              const name = "startDate";
+                              dispatch(handleChange({ name, value }));
+                            }}
+                            placeholder={startDate}
+                          />
+                        </div>
 
-          <p className="subdate__date--seperator">AU</p>
-          <div>
-            Termine
-            <DatePicker
-              onChange={(date) => {
-                const value = moment(date).format("YYYY-MM-DD");
-                const name = "endDate";
-                dispatch(handleChange({ name, value }));
-              }}
-              className="datePicker date"
-            />
-          </div>
-        </div>
-
-        <form className="form " /* onSubmit={onSubmit} */>
-          <div className="form__center">
-            <div>
-              {/* Survey Title */}
-              <FormRow
-                type="text"
-                name="title"
-                value={title}
-                handleChange={handleSurveyInput}
-                labelText="Titre Du sondage"
-              />
-              {/* Survey Context */}
-              <FormRow
-                type="text"
-                name="context"
-                value={context}
-                handleChange={handleSurveyInput}
-                labelText="Contexte"
-              />
-              {surveyOptions.map((ops) => {
-                return (
-                  <>
-                    <div key={ops.id}>
-                      <div>
-                        Option: {ops.id}: {ops.option}
-                        <br />
-                        {ops.image ? ops.image : "imageplace holde"}
-                        <div
-                          onClick={() =>
-                            toggleModal(ops.id, ops.option, ops.image)
-                          }
-                          className="btn"
-                        >
-                          modifier
+                        <div>
+                          Fin Du Sondage
+                          <DatePicker
+                            onChange={(date) => {
+                              const value = moment(date).format("YYYY-MM-DD");
+                              const name = "endDate";
+                              dispatch(handleChange({ name, value }));
+                            }}
+                            className="datePicker date"
+                            placeholder={endDate}
+                          />
                         </div>
                       </div>
                     </div>
-                    {modal && (
-                      <ModfiyOption
-                        toggleModal={toggleModal}
+                    {/* Survey Context */}
+                    <FormRow
+                      type="text"
+                      name="context"
+                      value={context}
+                      handleChange={handleSurveyInput}
+                      labelText="Contexte Du Sondage"
+                    />
+
+                    {surveyOptions.map((ops) => {
+                      return (
+                        <>
+                          <div className="optionContainer">
+                            <div key={ops.id} className="optionItem">
+                              <div className="optionItem__title">
+                                Option {ops.id} :
+                                <div className=" optionItem__img">
+                                  {ops.image ? (
+                                    <img src={imge} alt="image" />
+                                  ) : (
+                                    <img
+                                      src={imge}
+                                      className="optionItem__img--img"
+                                      alt="Option-img"
+                                    />
+                                  )}
+                                </div>
+                                <textarea
+                                  className="optionItem__text"
+                                  value={ops.option}
+                                />
+                                {btnState !== "Details" && (
+                                  <div
+                                    onClick={() => {
+                                      toggleModal(
+                                        ops.id,
+                                        ops.option,
+                                        ops.image
+                                      );
+                                    }}
+                                    className=" optionItem__btn--submit optionItem__btn"
+                                  >
+                                    modifier
+                                  </div>
+                                )}
+                                {btnState !== "Details" && (
+                                  <div
+                                    onClick={() =>
+                                      dispatch(deleteOption(ops.id))
+                                    }
+                                    className=" optionItem__btn--delete optionItem__btn"
+                                  >
+                                    supprimer
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          {modal && (
+                            <ModfiyOption
+                              toggleModal={toggleModal}
+                              handleChange={handleSurveyInput}
+                              modal={modal}
+                              {...ops}
+                            />
+                          )}
+                        </>
+                      );
+                    })}
+                    {btnState === "Details" ? (
+                      ""
+                    ) : (
+                      <div
+                        onClick={toggleAddOptionModal}
+                        className=" optionItem__btn--add optionItem__btn"
+                      >
+                        Créer option
+                      </div>
+                    )}
+                    {addOtionModal && (
+                      <CreateSondageQuestionsAndOptions
+                        toggleModal={toggleAddOptionModal}
                         handleChange={handleSurveyInput}
-                        modal={modal}
-                        {...ops}
+                        opinonId={opinonId}
+                        btnState={btnState}
+                        //modal={modal}
                       />
                     )}
-
-                    {/*  <FormRow
-                      type="text"
-                      name="option"
-                      value={option}
-                      handleChange={handleSurveyInput}
-                      labelText={`Option: ${ops.option}`}
-                      key={ops.id}
-                    /> */}
-                    {/*    <FormRow
-                      type="text"
-                      name="image"
-                      value={image}
-                      handleChange={handleSurveyInput}
-                      labelText={`Image: ${ops.id}`}
-                      key={ops.id}
-                    /> */}
-                  </>
-                );
-              })}
-              {isEditing ? "add option" : ""}
-            </div>
-
-            <div className="btn-container">
-              <div>
-                <button
-                  type="submit"
-                  className="btn btn-blak submit-btn"
-                  disabled={isLoading}
-                  onClick={handleSubmit}
-                >
-                  submit
-                </button>
-
-                <Link to="/sondage" className="btn btn-blak submit-btn">
-                  Back To Sondage Page
-                </Link>
-              </div>
+                  </div>
+                </div>
+              </form>
+              <div className="btn-container  retour-sondage__down"></div>
             </div>
           </div>
-        </form>
-      </div>
-    </section>
+          <div className="retour-sondage__down--btns btn-flex">
+            {btnState === "Details" ? (
+              <button
+                type="button"
+                className="btn btn__submit  btn-flex__submit"
+                onClick={handleFermer}
+              >
+                fermer
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="btn btn__submit btn__submit--modifier  btn-flex__submit"
+                disabled={isLoading}
+                onClick={handleSubmit}
+              >
+                {isEditing ? "modifier" : "Créer"}
+              </button>
+            )}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };

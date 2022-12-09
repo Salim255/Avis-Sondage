@@ -226,9 +226,11 @@
     font-weight: 700;
     box-shadow: 0rem 2rem 3rem rgba($color-black, $alpha: 0.2);
     transition: all 0.2s ease-in;
+    background: $color-error;
     &:hover {
       cursor: pointer;
       @include btn-animation;
+      color: $color-grey-dark-3;
     }
   }
 }
@@ -258,6 +260,7 @@
     position: relative;
     border-radius: 0.2rem;
     box-shadow: 0rem 0.5rem 1rem rgba($color: #000000, $alpha: 0.4);
+    text-transform: capitalize;
   }
   &__list {
     height: 5rem;
@@ -286,9 +289,36 @@
       }
     }
   }
+  &__list2 {
+    height: 5rem;
+    text-align: center;
+    overflow: auto scroll;
+    background: $color-grey-light-1;
+    position: absolute;
+    width: 19rem;
+    height: 8rem;
+    z-index: 1;
+    border-radius: 4px;
+    margin-top: 2px;
+    border: 1px solid $color-grey-dark-2;
+    &--option {
+      cursor: pointer;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      overflow: hidden;
+      padding: 0.5rem;
+      transition: all 0.2s ease;
+      text-transform: capitalize;
+
+      &:hover {
+        background: $color-tertiary;
+        @include btn-animation;
+      }
+    }
+  }
 }
 .droptrier {
-  height: 10rem;
+  //height: 10rem;
 }
 
 .custom-arrow,

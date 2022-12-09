@@ -4,48 +4,72 @@ import { Link } from "react-router-dom";
 import SondageCard from "./SondageCard";
 import { DatePicker } from "antd";
 import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllOpinions } from "../features/survey/opinionSlice";
+import CreateSurvey from "./CreateSurvey";
+import { AddSurvey } from "./AddSurvey";
 
 export default function SondageRight({ allOpinions }) {
-  const [dates1, setDate1] = useState("2022-10-11");
-  const [dates2, setDate2] = useState("2022-10-30");
+  const [startdate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [modal, setModal] = useState(false);
+  const dispatch = useDispatch();
+  const toggleCreateModal = () => {
+    setModal(!modal);
+  };
+
+  if (startdate && endDate) {
+    dispatch(getAllOpinions({ startDate: startdate, endDate: endDate }));
+  }
   return (
-    <div className="sondage-section__right right">
-      <div className="right__header">
-        <div>
-          <h2 className="avis__right--header">Sondage</h2>
-          <p className="avis__right--title">SUIVIS DES SONDAGES</p>
+    <>
+      <div className="sondage-section__right right">
+        <div className="right__header">
+          <div>
+            <h2 className="avis__right--header">Sondage</h2>
+            <p className="avis__right--title">SUIVIS DES SONDAGES</p>
+          </div>
+          <hr />
         </div>
-        <hr />
+
+        <div className="right__date">
+          <div className="subdate__date">
+            <DatePicker
+              className="subdate__date--input "
+              onChange={(date) => {
+                const value1 = moment(date).format("YYYY-MM-DD");
+
+                setStartDate(value1);
+              }}
+            />
+            <p className="subdate__date--seperator">AU</p>
+            <DatePicker
+              onChange={(date) => {
+                const value2 = moment(date).format("YYYY-MM-DD");
+                setEndDate(value2);
+              }}
+              className="datePicker"
+            />
+          </div>
+
+          <div className="right__date--ajouter">
+            <CiCirclePlus className="ajouter__icon" />
+            <div className="ajouter__text" onClick={() => toggleCreateModal()}>
+              AJOUTER
+            </div>
+          </div>
+        </div>
+        <SondageCard allOpinions={allOpinions} />
       </div>
 
-      <div className="right__date">
-        <div className="subdate__date">
-          <DatePicker
-            className="subdate__date--input "
-            onChange={(date) => {
-              const value1 = moment(date).format("YYYY-MM-DD");
-
-              setDate1(value1);
-            }}
-          />
-          <p className="subdate__date--seperator">AU</p>
-          <DatePicker
-            onChange={(date) => {
-              const value2 = moment(date).format("YYYY-MM-DD");
-              setDate2(value2);
-            }}
-            className="datePicker"
-          />
-        </div>
-
-        <div className="right__date--ajouter">
-          <CiCirclePlus className="ajouter__icon" />
-          <Link to="/create" className="ajouter__text">
-            AJOUTER
-          </Link>
-        </div>
-      </div>
-      <SondageCard allOpinions={allOpinions} />
-    </div>
+      {modal && (
+        <AddSurvey
+          toggleModal={toggleCreateModal}
+          setModall={setModal}
+          modall={modal}
+          /* idd={clickedId} */
+        />
+      )}
+    </>
   );
 }

@@ -6,6 +6,7 @@ import { getClientById } from "../features/review/reviewSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import userOpinionSlice from "../features/userOpinionSlice";
+
 function AvisItem({
   OpinionId,
   fisrtname,
@@ -20,13 +21,20 @@ function AvisItem({
   reviewItems,
 }) {
   const [itemId, setItemId] = useState("");
+
   const dispatch = useDispatch();
 
-  console.log(reviewItems, "From Aitem");
-  const handleClick = (e) => {
-    let item_id = e.target.dataset.id;
-    setItemId(item_id);
-    //dispatch(getClientById(item_id));
+  const [clientModal, setClientModal] = useState(false);
+  const [client, setClient] = useState(false);
+  const toggleModal = () => {
+    /* //let item_id = e.target.dataset.id;
+    //setItemId(item_id);
+    setClientModal(!clientModal);
+    console.log(clientModal); */
+    setClient(!client);
+    console.log("====================================");
+    console.log("Hello world Love", client);
+    console.log("====================================");
   };
 
   /*  if () {
@@ -35,7 +43,7 @@ function AvisItem({
 
   return (
     <>
-      <div className="list-avis" onClick={handleClick}>
+      <div className="list-avis" /* onClick={handleClick} */>
         <div className="list-avis__user">
           <img src={imge} className="list-avis__user--img" alt="user-img" />
           <div className="list-avis__user--name">
@@ -74,15 +82,29 @@ function AvisItem({
             }
           />
         </div>
-        <Link
+        {/*  <Link
           to={`/avis/${OpinionId}`}
           className="list-avis__details"
           onClick={handleClick}
         >
           DÉTAILS
-        </Link>
+        </Link> */}
+        <button
+          className="list-avis__details btn"
+          onClick={() => toggleModal()}
+        >
+          DÉTAILS
+        </button>
       </div>
       {/* <AvisClient id={itemId} /> */}
+      {client && (
+        <AvisClient
+          id={OpinionId}
+          clientModal={clientModal}
+          setClientModal={setClientModal}
+          toggleModal={toggleModal}
+        />
+      )}
     </>
   );
 }

@@ -35,7 +35,8 @@ export const createSurvey = createAsyncThunk(
           authorization: `Bearer ${token}`,
         },
       });
-
+      console.log(resp.data, "from create survey");
+      //dispatch(thunkAPI.getState().getAllOpinions)
       thunkAPI.dispatch(clearValues());
       return resp.data;
     } catch (error) {
@@ -49,11 +50,14 @@ export const createSurvey = createAsyncThunk(
 export const createOption = createAsyncThunk(
   "survey/createOption",
 
-  async (option, thunkAPI) => {
-    console.log(option);
+  async (formData, thunkAPI, type) => {
+    console.log("====================================");
+    console.log("from create option", formData);
+    console.log("====================================");
     try {
+      console.log(formData, "from back");
       const token = thunkAPI.getState().user.user.token;
-      const resp = await customFetch.post("/choices/create", option, {
+      const resp = await customFetch.post("/choices/create", formData, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -123,12 +127,44 @@ export const editOption = createAsyncThunk(
       });
       // console.log(thunkAPI.getState());
       thunkAPI.dispatch(clearValues());
-      console.log(resp.data);
+      thunkAPI.dispatch(
+        getAllOpinions({ startDate: "2021-10-14", endDate: "2023-11-01" })
+      );
+      console.log("====================================");
+      console.log("Helloooo", resp.data);
+      console.log("====================================");
       return resp.data;
     } catch (error) {
+      console.log("====================================");
+      console.log(error);
+      console.log("====================================");
       if (error.response.status === 409) {
         return thunkAPI.rejectWithValue(error.response.data);
       }
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deleteOption = createAsyncThunk(
+  "survey/deleteSurvey",
+  async (optionId, thunkAPI) => {
+    //thunkAPI.dispatch(showLoading());
+    console.log(optionId);
+    try {
+      const token = thunkAPI.getState().user.user.token;
+      const resp = await customFetch.delete(`/choices/${optionId}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      //To get the latest opinions, without deleted one
+      thunkAPI.dispatch(
+        getAllOpinions({ startDate: "2021-10-14", endDate: "2023-11-01" })
+      );
+      return resp.data;
+    } catch (error) {
+      thunkAPI.dispatch(hideLoading());
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
@@ -164,8 +200,8 @@ const surveySlice = createSlice({
     },
     [createSurvey.fulfilled]: (state, { payload }) => {
       state.createdSurvey = payload;
-      addSondageIdToLocalStorage(state.createdSurvey.id);
       state.isLoading = false;
+      addSondageIdToLocalStorage(state.createdSurvey.id);
       toast.success("You Have Seccessfully Created You New Survey");
     },
     [createSurvey.rejected]: (state, { payload }) => {
@@ -215,7 +251,10 @@ const surveySlice = createSlice({
     },
     [editOption.rejected]: (state, { payload }) => {
       state.isLoading = false;
-      toast.error(payload.error);
+      console.log("====================================");
+      console.log(payload, "hey hey");
+      console.log("====================================");
+      toast.error(payload);
     },
   },
 });

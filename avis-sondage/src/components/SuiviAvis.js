@@ -7,7 +7,10 @@ import format from "date-fns/format";
 import imge from "../img/user.jpeg";
 import AvisClient from "./AvisClient";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllReviews } from "../features/review/reviewSlice";
+import {
+  getAllReviews,
+  getViewsByDateAndEntity,
+} from "../features/review/reviewSlice";
 import { getStaticsByDate } from "../features/statics/staticsSlice";
 import "antd/dist/antd.min.css";
 import AvisItem from "./AvisItem";
@@ -22,14 +25,19 @@ function SuiviAvis() {
   const [arrow2, setArrow2] = useState(false);
   const [arrow3, setArrow3] = useState(false);
 
+  const [startdate, setStartDate] = useState("hehe");
+  const [endDate, setEndDate] = useState("hhh");
+
   const [dates1, setDate1] = useState("2022-10-11");
   const [dates2, setDate2] = useState("2022-10-30");
+  const [entity, setEntity] = useState("");
+  const [rayon, setRayon] = useState("");
 
   const dispatch = useDispatch();
 
-  const { isLoading, staticsItems, opinionsList } = useSelector(
+  /*   const { isLoading, staticsItems, opinionsList } = useSelector(
     (store) => store.statics
-  );
+  ); */
 
   const arrowMagasinHandler = (e) => {
     setArrow1(!arrow1);
@@ -67,20 +75,27 @@ function SuiviAvis() {
     }
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (dates2 && dates1) {
       dispatch(getStaticsByDate({ dates1, dates2 }));
     }
-  }, [dates1, dates2]);
+    if (dates2 && dates1) {
+      dispatch(getStaticsByDate({ dates1, dates2 }));
+    }
+  }, [dates1, dates2]); */
 
   useEffect(() => {
+    if (!startdate || !endDate) {
+    } else {
+      //dispatch(getViewsByDateAndEntity());
+    }
     dispatch(getAllReviews());
-    dispatch(getStaticsByDate());
+    //dispatch(getStaticsByDate({ dates1, dates2 }));
   }, []);
 
-  if (isLoading) {
+  /*  if (isLoading) {
     return <div>isLoading....</div>;
-  }
+  } */
 
   return (
     <>
@@ -90,12 +105,9 @@ function SuiviAvis() {
           arrowMagasinHandler={arrowMagasinHandler}
           arrow1={arrow1}
           arrow2={arrow2}
-        />
-        <SuiviRight
-          arrowTriertHandler={arrowTriertHandler}
           arrow3={arrow3}
-          staticsItems={staticsItems}
         />
+        <SuiviRight arrowTriertHandler={arrowTriertHandler} arrow3={arrow3} />
       </section>
     </>
   );

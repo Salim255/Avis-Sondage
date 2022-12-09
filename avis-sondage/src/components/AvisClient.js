@@ -11,11 +11,13 @@ import { MdStar } from "react-icons/md";
 import { IoIosStarHalf } from "react-icons/io";
 import { AiOutlineStar } from "react-icons/ai";
 
-function AvisClient() {
-  let { userOpinionId } = useParams();
-
+function AvisClient({ id, clientModal, setClientModal, toggleModal }) {
+  //let { userOpinionId } = useParams();
+  let userOpinionId = id;
   const dispatch = useDispatch();
-
+  console.log("====================================");
+  console.log(id, "from avisclient");
+  console.log("====================================");
   const { isLoading, opinionsList } = useSelector((store) => store.statics);
 
   const { reviewItems, avgRatting, callPercentage } = useSelector(
@@ -25,7 +27,7 @@ function AvisClient() {
   let user;
   if (opinionsList.length > 0) {
     user = reviewItems.find((x) => x.id === 1 * userOpinionId);
-    console.log(user, "From here1");
+    console.log(user, "user");
   }
 
   if (isLoading) {
@@ -36,9 +38,12 @@ function AvisClient() {
     <>
       <section className="ratting-section" id="clientreview">
         <div className="ratting-container">
-          <a href="/avis" className="ratting-container__close">
+          <div
+            className="ratting-container__close"
+            onClick={() => toggleModal()}
+          >
             &times;
-          </a>
+          </div>
           <div className="ratting-container__ratting">
             <div className="like">
               <p className="like__text">Aimez vous utiliser l'application ?</p>
@@ -62,21 +67,6 @@ function AvisClient() {
 
               <div className="stars__stars">
                 <div>
-                  {/*    <span className="star-margin">
-                    <Star fill="#eb8b1e" />
-                  </span>
-                  <span className="star-margin">
-                    <Star fill="#eb8b1e" />
-                  </span>
-                  <span className="star-margin">
-                    <Star fill="#eb8b1e" />
-                  </span>
-                  <span className="star-margin">
-                    <Star fill="#eb8b1e" />
-                  </span>
-                  <span className="star-margin">
-                    <Star fill="#eb8b1e" />
-                  </span> */}
                   {[...Array(5)].map((star, index) => {
                     return (
                       <>

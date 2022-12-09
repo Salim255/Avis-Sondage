@@ -28,9 +28,9 @@ export default function SondageAside({
           AVIS
         </Link>
         <p className="activeS">SONDAGE</p>
-        <Link to={`/sondage/questionAndOptions/${createdId}`}>
+        {/*  <Link to={`/sondage/questionAndOptions/${createdId}`}>
           Complete your createdSondage
-        </Link>
+        </Link> */}
       </div>
       <div className="sondage-section__left--down">
         <div className="leftDown">
@@ -50,7 +50,7 @@ export default function SondageAside({
                   onClick={arrowMagasinHandler}
                 ></span>
               </div>
-              <ul className={arrow1 ? ["drop__list"] : "hide"}>
+              <ul className={arrow1 ? ["drop__list2"] : "hide"}>
                 <li className="drop__list--option">Magasin</li>
                 <li className="drop__list--option">Market</li>
                 <li className="drop__list--option">Magasin</li>
@@ -76,7 +76,7 @@ export default function SondageAside({
                   onClick={arrowMarketHandler}
                 ></span>
               </div>
-              <ul className={arrow2 ? ["drop__list"] : "hide"}>
+              <ul className={arrow2 ? ["drop__list2"] : "hide"}>
                 <li className="drop__list--option">Magasin</li>
                 <li className="drop__list--option">Market</li>
                 <li className="drop__list--option">Magasin</li>
